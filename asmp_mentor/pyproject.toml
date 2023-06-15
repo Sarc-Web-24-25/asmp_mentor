@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "asmp-mentor"
+version = "0.1.0"
+description = "This is ASMP mentor portal, first time by SARC Web"
+authors = ["PranitaR12 <prandive12@gmail.com>"]
+readme = "README.md"
+packages = [{include = "asmp_mentor"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.2"
+djangorestframework = "^3.14.0"
+django-cors-headers = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
