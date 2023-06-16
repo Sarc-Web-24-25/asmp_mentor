@@ -843,6 +843,22 @@
     border-radius: 50%;
     width : 40px;
   }
+
+  .options label {
+      
+      font-size: 13px;
+    }
+  .brochure{
+    margin-top: 2%;
+  }
+    .brochure p a{
+      text-decoration: none;
+    }
+{% comment %} 
+    .options input[type="checkbox"] {
+     
+      margin-right: 10px;
+    } {% endcomment %}
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
@@ -953,9 +969,20 @@
                 <div class="input_field">
                   <input type="text" name="company_name" placeholder="Company/Organization Name"  />
                 </div> 
+                <select name="department" id="department" style="width: 100%; padding: 6px; border: 1px solid #ccc;" onchange="showOtherDepartment(this);" required>
+                <option value="" select-disabled="true"> --Branch-- </option>
+              {% for key, value in options.BRANCH_CHOICES %}
+                <option value={{key}}>{{value}}</option>
+              {% endfor %}
+              </select><br></br>
                 <div class="input_field"> 
                   <input type="text" name="placementExperience" placeholder="Past Experience (Job/Internship/Project/POR)"/>
                 </div> 
+                <div class="input_field"> 
+                  <input type="text" name="placementExperience" placeholder="Past Experience (Job/Internship/Project/POR)"/>
+                </div> 
+                <div class='form-label'>Fields in which you are willing to provide mentorship (Enter preferences)</div>
+                <textarea style="width:100%; padding: 5px; border: 1px solid #ccc;" name="suggestion" placeholder="Suggestions (We love to hear from you)"></textarea>
 
 
 
@@ -967,20 +994,71 @@
                     <option value={{key}}>{{value}}</option>
                   {% endfor %}
                   </select>
-                  <select onchange="checkCoreSelect(this)" class="input_field pref" name="placementPref2" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
-                    <option value="" select-disabled="true"> --Preference 2-- </option>
-                      {% for key, value in options.PLACEMENT_FIELDS %}
-                      <option value={{key}}>{{value}}</option>
-                      {% endfor %}
+
+                  <div class='form-label'>Fields in which you are willing to provide mentorship (Enter preferences)</div>
+                <div>
+                  <select onchange="checkCoreSelect(this)" class="input_field pref" name="placementPref1" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
+                    <option value="" select-disabled="true"> --Preference 1-- </option>
+                  {% for key, value in options.PLACEMENT_FIELDS %}
+                    <option value={{key}}>{{value}}</option>
+                  {% endfor %}
                   </select>
-                  <select onchange="checkCoreSelect(this)" class="input_field pref" name="placementPref3" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
-                    <option value="" select-disabled="true"> --Preference 3-- </option>
-                    {% for key, value in options.PLACEMENT_FIELDS %}
-                      <option value={{key}}>{{value}}</option>
-                    {% endfor %}
+
+                  <div class='form-label'>Fields in which you are willing to provide mentorship (Enter preferences)</div>
+                <div>
+                  <select onchange="checkCoreSelect(this)" class="input_field pref" name="placementPref1" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
+                    <option value="" select-disabled="true"> --Preference 1-- </option>
+                  {% for key, value in options.PLACEMENT_FIELDS %}
+                    <option value={{key}}>{{value}}</option>
+                  {% endfor %}
                   </select>
+
+                  
                 </div>
               </div>
+              <div class='form-label'>Fields in which you are willing to provide mentorship (Enter preferences)</div>
+
+              <div class="options">
+    <label>
+      <input type="checkbox" name="languages" value="python">
+      Python
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" name="languages" value="java">
+      Java
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" name="languages" value="javascript">
+      JavaScript
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" name="languages" value="csharp">
+      C#
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" name="languages" value="ruby">
+      Ruby
+    </label>
+  <div class="brochure">
+    <p><a href="path/to/brochure.pdf">Click here to view ASMP Brochure</a></p>
+  </div>
+  <div class='form-label'>Fields in which you are willing to provide mentorship (Enter preferences)</div>
+  <div class="options">
+    <label>
+      <input type="checkbox" name="languages" value="yes">
+      Yes
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" name="languages" value="no">
+      No
+    </label>
+    <br>
+  </div>
 
               <div id="gradMentoring" style="display: none;">
                 <div class="input_field"> 
@@ -1027,31 +1105,15 @@
                 </div>
 
                 </div>             
-                <div class="input_field">
-                <input type="text" class="form-control" id="no_of_mentees" name="no_of_mentees" required placeholder="Preferred number of mentees">
-              </div>
-              <div class="input_field">
-                <input type="text" class="form-control" id="referral" name="referral" placeholder="Any other batchmate who you would like to refer (Their name and contact number) ">
-              </div>
-                <textarea style="width:100%; padding: 5px; border: 1px solid #ccc;" name="suggestion" placeholder="Suggestions (We love to hear from you)"></textarea>
-                <div class="mb-3">
-                  <ul>
-                    <li>I will support the mentee to the best of my abilities.</li>
-                    <li>I will be responsive to the mentee's doubts and queries.</li>
-                    <li>I will provide adequate feedback to SARC (through feedback forms).</li>
-                  </ul>
-                  <input class="form-check-input" type="checkbox" name="Iagree" id="Iagree" required>
-                  <label class="form-check-label" for="Iagree">
-                  By registering, I agree to the above terms and conditions
-                  </label>
-                </div>
-              <input class="button" type="submit" value="Register"/>
+                
+              <input class="button" type="submit" value="Submit"/>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
   <footer class="text-center text-white" style="background-color:;">
     <div class="container p-4">
       <!-- Section: Social media -->
