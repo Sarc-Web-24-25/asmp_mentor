@@ -5,124 +5,451 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> {% endcomment %}
     <link rel="icon" href="{% static 'img/favIcon.png' %}" sizes="16x16" type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-  </script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link type='text/css' rel="stylesheet" href="{% static 'StyleSheet/home.css' %}">
-    <script  src='../static/javascript/index.js'></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link type='text/css' rel="stylesheet" href="{% static 'StyleSheet/home.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-    <script type="text/javascript">
-        if (screen.width <= 699) {
-        document.location = "/phonehome";
-    }
-    </script> 
-    <script>
-        const explaination1 = document.getElementsByClassName('explaination1')[0]
-            const explaination2 = document.getElementsByClassName('explaination2')[0]
-            const explaination3 = document.getElementsByClassName('explaination3')[0]
-            const explaination4 = document.getElementsByClassName('explaination4')[0]
-
-            function mouseOver1() {
-                explaination1.classList.remove('hide');
-                explaination1.classList.add('show');              
-            }
-
-            function mouseOut1() {
-                explaination1.classList.remove('show');
-                explaination1.classList.add('hide');
-            }
-
-            function mouseOver2() {
-                explaination2.classList.add('show');
-                explaination2.classList.remove('hide');
-            }
-
-            function mouseOut2() {
-                explaination2.classList.remove('show');
-                explaination2.classList.add('hide');
-            }
-            function mouseOver3() {
-                explaination3.classList.add('show');
-                explaination3.classList.remove('hide');
-            }
-
-            function mouseOut3() {
-                explaination3.classList.remove('show');
-                explaination3.classList.add('hide');
-            }
-            function mouseOver4() {
-                explaination4.classList.add('show');
-                explaination4.classList.remove('hide');
-            }
-            function mouseOut4() {
-                explaination4.classList.remove('show');
-                explaination4.classList.add('hide');
-            }
-    </script>
-    <title>PMP | SARC | IIT Bombay</title>
+   <title>PMP | SARC | IIT Bombay</title>
     <style>
-        * {
+      * {
             box-sizing: border-box;
             margin: 0px;
             padding: 0px;
-            background-color: black;
         }
+        .main_body {
+          background-color: black;
+          {% comment %} background-image: url('c:\Users\ASUS\Pictures\asmp_bg.png'); {% endcomment %}
+          padding-top: 5vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center; 
+  
+        }
+        .asmp_image {
+          padding-top: 5vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+        }
+
+        .member-photo {
+          max-width: 100%;
+        }
+        .brochure_btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .brochure-button {
+          border-radius: 15px;
+          padding: 10px 20px;
+          background-color: #007FFF;
+          color: white;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          margin-bottom: 20px;
+          text-decoration: none;
+        }
+
+        .brochure-button:hover {
+          background-color: #191970;
+        }
+
+        .asmp_title h1{
+          justify-content: center;
+          text-align: center
+        }
+   
+        .asmp_title {
+          display: flex;
+          align-items: center; /* vertically align content and image */
+        }
+
+        .asmp_content {
+          flex: 1; /* take up remaining space */
+          padding: 30px;
+          color: white;
+          font-size: 20px;
+          text-align: justify;
+          padding-left: 70px;
+          
+        }
+
+        .asmp_content h2{
+          font-size: 40px;
+          color: #a8d8f0;
+          text-align: center;
+
+        }
+
+        .asmp_image {
+          flex: 1; /* take up remaining space */
+          text-align: center; /* horizontally center the image */
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+        .animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #02055A 0%,
+    #B0DBF1 29%,
+    #02198B 67%,
+    #000137 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 7s linear infinite;
+  display: inline-block;
+      font-size: 140px;
+      font-weight: 600;
+      margin-top: 20px
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1px 50px;
+            box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);
+            width: 100vw;
+            position: fixed;
+            background-color: #0A1172
+        
+            ;
+            transition: all 0.5s ease-in-out;
+            z-index: 200;
+        }
+        
+        .logo h1 {
+            cursor: pointer;
+        }
+        
+        .nav__links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav__link {
+            margin: 0 10px;
+            color: white;
+            padding: 15px 15px;
+            border-radius: 100px;
+            transition: all 0.5s ease-in-out;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .nav__link.active,
+        .nav__link:hover {
+            background-color: black;
+            color: white;
+        }
+.faq {
+  border: 1px solid skyblue;
+  background-color: #0a1172;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 40px;
+  width: 80%;
+  border-radius: 38px;
+}
+
+.question {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #FFF
+
+}
+
+.answer {
+  display: none;
+}
+
+.answer.expanded {
+  font-size: 20px;
+  padding: 15px;
+  text-align: justify;
+  border-radius: 38px;
+  display: block;
+  margin-bottom: 20px;
+  background-color: skyblue; /* Change this to your desired color */
+}
+
+.structure h2{
+  color: #a8d8f0;
+  text-align: center;
+  margin-bottom: 5%;
+  font-size: 40px;
+}
+
+.asmp_dist h2{
+  color: #a8d8f0;
+  text-align: center;
+  margin-bottom: 5%;
+  font-size: 40px;
+}
+
+.asmp_row {
+  display: flex;
+  flex-direction: row;
+  
+  margin-bottom: 60px;
+}
+
+.asmp_circle {
+  width: 210px;
+  height: 190px;
+  border-radius: 50%;
+  background-color: #000090;
+  display: flex;
+  font-weight: bold;
+  margin-left: 2%;
+  margin-right: 2%;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+}
+
+.asmp_box {
+  background-color: skyblue;
+  padding: 10px;
+  width: 100%;
+  border-radius: 38px;
+  font-size: 20px;
+}
+
+.structure{
+  padding: 5%;
+}
+
+        /* Contact section */
         
            .team-members {
                display: flex;
                justify-content: center;
                
            }
+           .team_members h2{
+  color: #a8d8f0;
+  text-align: center;
+  margin-bottom: 5%;
+  font-size: 40px;
+}
         
            .member {
                text-align: center;
            }
         
            .member-photo {
-               border-radius: 0%;
-               
-               
+               border-radius: 50%;
+               width: 250px;
+               height: 250px;
+               object-fit: cover;
+               margin-bottom: 10px;
+               margin-right: 100px;
+               margin-left: 100px;
+               margin-top: 10%;
            }
            .member-photo:hover {
-               box-shadow: 0 0 20px 15px #D5877D;
+               box-shadow: 0 0 15px 8px #0a1172;
            }
         
+           .member-name {
+               margin-bottom: 5px;
+               font-size: 25px;
+               color: #fff
+           }
+        
+            .member-details{
+                margin-bottom: 5px;
+                font-size: 17px;
+                color: #fff
+            }
+        
+           .social-media a {
+               margin-right: 5px;
+               font-size: 25px;
+               color: #000;
+           }
+        
+           .social-media a:hover {
+               color: #D5877D;
+           }
     </style>
   </head>
-  <body style="font-family: 'Poppins';">
-
-  
-                <img src="{% static 'img/asmp1.png' %}" alt="Team Member 2" class="member-photo">
-                
-
-
-
-        {% comment %} <div class="roleimage"><img src="../static/img/mentor4.png" style="width: 74vw; height: auto;"></div>
-                    
-            </div>
-
-        </div> {% endcomment %}
+  <body style="font-family: 'spartan';">
+              <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'img/logo.png' %}" style="padding: 0.2rem; width: 7vw; height: auto;">
+        </div>
+    
+        <div class="nav__links">
+            <a href="#about" class="nav__link">About</a>
+            <a href="#mentor" class="nav__link">Mentor</a>
+            <a href="#faq" class="nav__link">FAQs</a>
+            <a href="#testimonials" class="nav__link">Testimonials</a>
+            <a href="#contact" class="nav__link">Contact</a>
+        </div>
     </div>
+    <div class="main_body">
 
-<script src='{% static 'JavaScript/index.js' %}'></script>
+      <div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
 
-   <footer class="text-center text-white" style="background-color:#624F48;">
-    <div class="container p-4">
+      
+
+      <div class="title">
+            <img src="{% static 'img/title.png' %}" style="padding: 0.2rem; width: 35vw; height: auto; margin-top: 3%";>
+        </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+        <div class="asmp_title">
+          <div class="asmp_content">
+            <h2>ABOUT ASMP</h2>
+            <p>Mentorship isn't just about providing mentees with career advice; it's also about providing students with a role model who can help them overcome obstacles and realise their complete potential.<br></br>
+              ASMP is an initiative designed to utilise the invaluable expertise and knowledge of our distinguished alumni to assist students. It facilitates the exchange of ideas and the acquisition of new insights regarding college life and post-graduation opportunities. <br></br>
+              ASMP provides students with the opportunity for one-on-one interaction with alumni, who serve as our required mentors, through the organization of some offline events which help to break the barriers between IIT Bombay generations over the years.
+            </p>
+          </div>
+          <div class="asmp_image">
+            <img src={% static 'img/asmp_bg1.png' %} alt="Image Description">
+          </div>
+        </div>
+        <div class="faq">
+          <div class="question">Why should I become an ASMP mentor? </div>
+          <div class="answer"><p>Bob Proctor rightly said that a mentor is someone who sees more talent and ability within you, than you see in yourself, and helps bring it out of you.<br></br>
+          The primary objective of this program is to offer students a long-lasting source of inspiration and guidance—an exemplary figure who can serve as a beacon of hope during challenging times. The mentors have personally experienced and overcome the hardships and obstacles that students are currently facing or will encounter in their future journeys and are, thus, the best people to look up to.<br></br>
+        Your invaluable wealth of knowledge, combined with both your triumphs and setbacks, is essential in assisting students with understanding and resolving various career-related matters.<br></br>
+      Furthermore, this program presents an opportunity to actively engage with the curiosity and enthusiasm of young minds, fostering meaningful mentor-student relationships that bring both personal and professional fulfillment.<br></br></div>
+</div>
+<div class="faq">
+  <div class="question">How can I create an impact in my mentee’s life through ASMP?</div>
+  <div class="answer">The program offers a platform for individual interaction with alumni from our institute, aiding in the resolution of diverse challenges faced by students during their campus journey and beyond.
+    It presents a remarkable chance for students to enhance their interpersonal abilities and forge stronger connections with the esteemed alumni of IIT Bombay.
+    Through this opportunity, mentees can gain valuable insights into their mentors' academic experiences at the institute, thus enriching their own educational journey. 
+  </div>
+</div>
+
+<div class="asmp_dist">
+  <h2> DISTRIBUTION OF MENTORS </h2>
+            <img src="{% static 'img/distrib_asmp.png' %}" style="padding: 0.2rem; width: 40vw; height: auto; border: 5px solid #0a1172">
+        </div>
+
+<div class="structure">
+  <h2> STRUCTURES AND INITIATIVES BY ASMP </h2>
+<div class="asmp_row">
+  <div class="asmp_circle">Allocation of Mentees</div>
+  <div class="asmp_box">Group mentoring is a networking and learning opportunity where students can connect with successful alumni and fellow students who share similar interests.
+    In these sessions, experienced alumni from various fields such as finance, consulting, IT, analytics, and product management interact with small groups of 4-5 students in an offline format.
+    It's a chance to gain insights, ask questions, and receive guidance in a focused and personalized setting, allowing the students to explore specific career options and expand their professional network.
+  </div>
+  </div>
+<div class="asmp_row">
+  <div class="asmp_box">Break the Ice is the flagship event of the Alumni Student Mentorship Program that is conducted during the Student Alumni Meet. 
+    The event focuses on bringing mentors and mentees involved in the regular ASMP phase together so that they can interact with each other over lunch . 
+    Besides lunch, a number of other informal activities are organized and a photo booth is also set up so as to create an atmosphere suited for an open and free interaction.
+  </div>
+  <div class="asmp_circle">Break the Ice</div>
+</div>
+<div class="asmp_row">
+  <div class="asmp_circle">Shadow Program </div>
+  <div class="asmp_box">Students get the opportunity to visit alumni workplaces and gain insights into corporate life. 
+    The program involves discussions with alumni, introductions to co-workers, and observations of work methodologies. 
+    Past visits have included companies like the Bombay Stock Exchange (BSE), National Stock Exchange (NSE), and Hindustan Unilever Limited (HUL).</div>
+  </div>
+<div class="asmp_row">
+  <div class="asmp_box">Group mentoring is a networking and learning opportunity where students can connect with successful alumni and fellow students who share similar interests. 
+    In these sessions, experienced alumni from various fields such as finance, consulting, IT, analytics, and product management interact with small groups of 4-5 students in an offline format. 
+    It's a chance to gain insights, ask questions, and receive guidance in a focused and personalized setting, allowing the students to explore specific career options and expand their professional network.
+  </div>
+  <div class="asmp_circle">Group Mentoring </div>
+</div>
+<div class="asmp_row">
+  <div class="asmp_circle">Nail the Prep</div>
+  <div class="asmp_box">SARC provides an opportunity to all third year students to be a part of mock internship interview program - Nail The Prep, which is planned to engage students in mock interviews with our highly esteemed alumni. 
+    NTP generally happens in July, wherein our alumni with the experience in different fields like Finance, consult, PM, IT, software etc. take mock interviews of students who are targeting internships. 
+    NTP also involves a QnA session named as Ask The Alum (ATA) to clarify students’ doubts about internship season.
+  </div>
+</div>
+<div class="asmp_row">
+  <div class="asmp_box">Two alumni, one from each career field, contribute to assisting the students in determining which path to pursue. 
+    This opportunity provides an environment for open discussion about the required skills, work type, and future perspective of both jobs. 
+    This brainstorming session is conducted in batches of limited number of students. 
+  </div>
+  <div class="asmp_circle">Transverse Mentoring</div>
+</div>
+</div>
+
+<div class="team_members">
+<h2> CONTACT ASMP </h2>
+<div class="team-members">
+  
+
+    <div class="member" style="">
+      <img src="{% static 'img/aastha.jpg' %}" alt="Team Member 1" class="member-photo">
+      <h3 class="member-name">Aastha Sancheti</h3>
+      <p class="member-details">SARC Core Team Member, ASMP</p>
+      <p class="member-details">Contact Number - +91 9530364066</p>
+      <div class="social-media">
+        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.linkedin.com/in/agrajah-bhobe-27a326236" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://instagram.com/agrajah_bhobe?igshid=MzRlODBiNWFlZA==" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="member" style=" ">
+      <img src="{% static 'img/priyaank.jpg' %}" alt="Team Member 2" class="member-photo">
+      <h3 class="member-name">Priyaank Sheth</h3>
+      <p class="member-details">SARC Core Team Member, ASMP</p>
+      <p class="member-details">Contact Number: +91 9619286724</p>
+      <div class="social-media">
+        <a href="https://www.facebook.com/Garvcosmo" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.linkedin.com/in/garv-gupta-425596242?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BTO0FU%2FPlTbm8rvmUBaxwLg%3D%3D" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://instagram.com/garvcosmo?igshid=MzRlODBiNWFlZA==" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+
+   <footer class="text-center text-white" style="background-color:#202020;" >
+    <div class="footer_container p-4">
       <!-- Section: Social media -->
       <section class="mb-4">
         <!-- Facebook -->
@@ -153,84 +480,19 @@
     </div>
     <!-- Copyright -->
   </footer>
+      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-   
-
-
-
-
- 
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    -->
-    <script>
-        const toggles = document.querySelectorAll('.faq-toggle');
-
-            toggles.forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    toggle.parentNode.classList.toggle('active');
-                });
-            });
-            const sliderElm = document.querySelector(".slider-container .slider");
-                const btnLeft = document.querySelector(".slider-container .btn-left");
-                const btnRight = document.querySelector(".slider-container .btn-right");
-
-                const numberSliderBoxs = sliderElm.children.length;
-                let idxCurrentSlide = 0;
-
-                // Functions:
-                function moveSlider() {
-                    let leftMargin = (sliderElm.clientWidth / numberSliderBoxs) * idxCurrentSlide;
-                    sliderElm.style.marginLeft = -leftMargin + "px";
-                    console.log(sliderElm.clientWidth, leftMargin);
-                }
-                function moveLeft() {
-                    if (idxCurrentSlide === 0) idxCurrentSlide = numberSliderBoxs - 1;
-                    else idxCurrentSlide--;
-
-                    moveSlider();
-                }
-                function moveRight() {
-                    if (idxCurrentSlide === numberSliderBoxs - 1) idxCurrentSlide = 0;
-                    else idxCurrentSlide++;
-
-                    moveSlider();
-                }
-
-                // Event Listeners:
-                btnLeft.addEventListener("click", moveLeft);
-                btnRight.addEventListener("click", moveRight);
-                window.addEventListener("resize", moveSlider);
-    const sections = document.querySelectorAll(".section");
-
-    window.addEventListener("scroll", function (event) {
-        sections.forEach((section) => {
-            let top = window.scrollY + 250;
-            let offset = section.offsetTop;
-            let height = section.offsetHeight;
-            let id = section.getAttribute("id");
-
-            if (top >= offset && top < offset + height) {
-                document.querySelectorAll(".active").forEach((a) => {
-                    a.classList.remove("active");
-                });
-
-                document.querySelector("[href*=" + id + "]").classList.add("active");
-            }
-        });
+      <script>document.addEventListener('DOMContentLoaded', function() {
+  var questions = document.getElementsByClassName('question');
+  
+  Array.prototype.forEach.call(questions, function(question) {
+    question.addEventListener('click', function() {
+      var answer = this.nextElementSibling;
+      answer.classList.toggle('expanded');
     });
-
-    </script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+  });
+});
+</script>
     
   </body>
 </html>
