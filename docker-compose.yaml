@@ -1,0 +1,21 @@
+version: '2.2'
+
+services:
+  pmpbackend:
+    restart: unless-stopped
+    build:
+      context: ./BeastPMP
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    entrypoint: /BeastPMP/wsgi-entrypoint.sh
+    volumes:
+      - ./BeastPMP:/BeastPMP/
+    expose:
+      - 8000
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    name: yearbook23_mynetwork
