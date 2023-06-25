@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,7 +38,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = [
     'rest_framework',
     'asmp_reg.apps.AsmpRegConfig',
-    
     'django.contrib.admin',
     'django.contrib.auth',
     "corsheaders",
@@ -49,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -107,6 +107,17 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+# settings.py
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'prandive12@gmail.com'  
+# EMAIL_HOST_PASSWORD = 'xirtmqmaueferxkf'  
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'prandive12@gmail.com' 
+
 
 
 # Internationalization

@@ -48,6 +48,8 @@
   <link rel="icon" type="image/x-icon" href="../static/title3.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" /
   {% comment %}
   <script src="https://use.fontawesome.com/4ecc3dbb0b.js" /> {% endcomment %}
   <title>Register | SARC, IIT Bombay</title>
@@ -888,13 +890,9 @@
           <div class="">
             <form method="POST" action="mentorReg"> {% csrf_token %}
               <div class="input_field">
-                <input type="text" name="firstname" placeholder="First Name" required />
+                <input type="text" name="fullname" placeholder="Full Name" required />
               </div>
-              <div class="input_field"> 
-                <input type="text" name="lastname" placeholder="Last Name" required />
-              </div>
-              
-              <select name="" id="department" style="width: 100%; padding: 6px; border: 1px solid #ccc;" onchange="showOtherDepartment(this);" required>
+              <select name="department" id="department" style="width: 100%; padding: 6px; border: 1px solid #ccc;" onchange="showOtherDepartment(this);" required>
                 <option value="" select-disabled="true"> --Department-- </option>
               {% for key, value in options.BRANCH_CHOICES %}
                 <option value={{key}}>{{value}}</option>
@@ -915,10 +913,7 @@
                 <option value={{key}}>{{value}}</option>
               {% endfor %}
               </select>
-              
-
-              
-
+             
               <div class="input_field">
                 <input type="text" id="degree_other" style="width: 100%; padding: 6px; border: 1px solid #ccc; display: none;" name="degree_other" placeholder="In case you have chosen other in degree"/>
               </div>
@@ -979,23 +974,27 @@
 
                 <div class='form-label'>In which field do you want to be a Mentor</div>
                 <div>
-                  <select onchange="checkCoreSelect(this)" class="input_field pref" name="Pref" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
+                  <select class="input_field pref" name="pref" style="width: 100%; padding: 6px; border: 1px solid #ccc;"onchange="showOtherField(this);" required>
                     <option value="" select-disabled="true"> --Select Area-- </option>
-                  {% for key, value in options.PLACEMENT_FIELDS %}
+                  {% for key, value in options.FIELDS %}
                     <option value={{key}}>{{value}}</option>
                   {% endfor %}
                   </select>
 
+                  <div class="input_field">
+            <input id="other_field" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; display: none;" name="other_field" placeholder="In case you have chosen other in fields"/>
+          </div>
+
                   <div class='form-label'>Number of mentees you are willing to mentor</div>
                 <div>
-                  <select onchange="checkCoreSelect(this)" class="input_field pref" name="mentees" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
+                  <select  class="input_field pref" name="mentees" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
                     <option value="" select-disabled="true"> --Select Mentee-- </option>
                   {% for key, value in options.MENTEES %}
                     <option value={{key}}>{{value}}</option>
                   {% endfor %}
                   </select>
 
-                <div class='form-label'>Preferred Department for Mentees</div>
+                {% comment %} <div class='form-label'>Preferred Department for Mentees</div>
                 <div>
                   <select onchange="checkCoreSelect(this)" class="input_field pref" name="dept_mentees" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
                     <option value="" select-disabled="true"> --Select-- </option>
@@ -1006,7 +1005,27 @@
 
                   
                 </div>
-              </div>
+              </div> {% endcomment %}
+              <div class='form-label'>Preferred Department for Mentees</div>
+<div>
+    <select name="dept_mentees" id="dept_mentees" multiple>
+        <option value="" disabled selected>--Select--</option>
+        {% for key, value in options.DEPT_MENTEES_FIELDS %}
+        <option value="{{ key }}">{{ value }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#dept_mentees').select2();
+    });
+</script>
+          </div>
+
+          <div class="input_field">
+            <input id="other_dept_mentees" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; display: none;" name="other_dept_," placeholder="In case you have chosen other in department"/>
+          </div>
               {% comment %} <div class='form-label'>Who do you want to mentor?</div>
 
               <div class="options">
@@ -1016,8 +1035,38 @@
       {{ option }}
     </label>
     <br>
-  {% endfor %}
-</div>  {% endcomment %}
+  {% endfor %} {% endcomment %}
+</div> 
+<div class='form-label'>Who do you want to mentor?</div>
+<div class="options">
+  <label>
+    <input type="checkbox" name="preference_no_preference" value="1">
+    No preference
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="preference_final_year_undergrad" value="1">
+    Final year undergraduate students
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="preference_other_undergrad" value="1">
+    Other undergraduate students
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="preference_mtech_students" value="1">
+    M.Tech students
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="preference_phd_students" value="1">
+    PhD students
+  </label>
+  <br>
+</div>
+
+
 
 <div class='form-label'>Were you part of the last year program?</div>
   <div class="options">
@@ -1031,27 +1080,22 @@
       No
     </label>
   </div>
+</div>
 
   <div class='form-label'>Do you want to become a buddy mentor for a freshie?</div>
   <div class="options">
     <label>
-      <input type="radio" name="availability" value="yes">
+      <input type="radio" name="buddy" value="yes">
       Yes
     </label>
     <br>
     <label>
-      <input type="radio" name="availability" value="no">
+      <input type="radio" name="buddy" value="no">
       No
     </label>
-  </div>
-
-              
-
-              
+  </div> 
               </div>
             </div>
-
-          
                 
               <input class="button" type="submit" value="Submit"/>
             </form>
@@ -1094,6 +1138,7 @@
     <!-- Copyright -->
   </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
@@ -1183,6 +1228,15 @@
     }
   }
 
+  function showOtherField(that){
+    if(that.value === 'other'){
+      var check = document.getElementById("other_field")
+      check.style.display = "block";
+    }else{
+      document.getElementById("other_field").style.display = "none";
+    }
+  }
+
   function showOtherDegree(that){
     if(that.value === 'other_degree'){
       var check = document.getElementById("degree_other")
@@ -1193,7 +1247,7 @@
   }
 
 
-  function showSubdivisionOptions(that, branchSubdivisionChoices) {
+  {% comment %} function showSubdivisionOptions(that, branchSubdivisionChoices) {
 
     var subdivisionSelect = document.getElementById("subdivisions");
     var selectedBranch = that.value;
@@ -1231,11 +1285,9 @@
 
     document.getElementById("other_mentorship").style.display = "none";
 
-  }
+  } {% endcomment %}
 
 
-
-   
 </script>
   </body>
 

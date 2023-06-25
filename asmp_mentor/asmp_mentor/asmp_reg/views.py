@@ -1,3 +1,152 @@
+# # from django.shortcuts import render, redirect
+# # from django.http import HttpResponse, response
+# # from .models import Registration
+# # from django.core.exceptions import ValidationError
+# # import csv
+# # from rest_framework.decorators import api_view
+# # from . import options
+# # from django.views.decorators.csrf import csrf_exempt
+
+
+# # def export(request):
+# # 	response = HttpResponse(content_type='text/csv')
+# # 	writer = csv.writer(response)
+# # 	writer.writerow([
+# #             'First Name',
+# #             'Last Name',
+# #             'Department',
+# #             'Other department',
+# #             'degree',
+# #             'Other Degree',
+# #             'Hostel',
+# #             'Year',
+# #             'Contact',
+# #             'Email',
+# #             'Linkedin Profile',
+# #             'City',
+# #             'Country'
+# #             'Designation',
+# #             'Company Name',
+# #             'Work Profile',
+# #             'Preferences',
+# #             'Mentees',
+# #             'Dept Mentees',
+# #             'options',
+# #         ])
+# # 	for registration in Registration.objects.all().values_list(
+# #             'firstname',
+# #             'lastname',
+# #             'department',
+# #             'department_other',
+# #             'degree',
+# #             'degree_other',
+# #             'hostel',
+# #             'year',
+# #             'other_year',
+# #             'contact',
+# #             'email',
+# #             'linkedin',
+# #             'city',
+# #             'country',
+# #             'designation',
+# #             'company_name',
+# #             'work_profile',
+# #             'Pref',
+# #             'mentees',
+# #             'dept_mentees',
+# #             'suggestions',
+# #             'alumni_recommendations'
+# #         ):
+# # 		writer.writerow(registration)
+
+# # 	response['Content-Disposition'] = 'attachment; filename="mentors_pmp23.csv"'
+# # 	return response
+
+
+# # def index(request):
+# #     return render(request, 'AsmpReg/home.html')
+
+
+# # def phonehome(request):
+# #     return render(request, 'AsmpReg/phonehome.html')
+
+
+# # @csrf_exempt
+# # def mentorReg(request):
+
+# #     def __str__(self):
+# #         return self.fullname
+
+# #     if request.method == 'POST':
+
+# #         fullname = request.POST.get('fullname')
+# #         rollno = request.POST.get('rollno')
+# #         department = request.POST.get('department')
+# #         department_other = request.POST.get('other_department')
+# #         degree = request.POST.get('degree')
+# #         degree_other = request.POST.get('degree_other')
+# #         graduation_year = request.POST.get('graduation_year')
+# #         contact = request.POST.get('contact')
+# #         email = request.POST.get('email')
+
+# #         placementOrGrad = request.POST.get('placementOrGrad')
+
+# #         field_pref3 = "NA"
+
+# #         if (placementOrGrad == 'placement'):
+# #             experience = request.POST.get('placementExperience')
+# #             field_pref1 = request.POST.get('placementPref1')
+# #             field_pref2 = request.POST.get('placementPref2')
+# #             field_pref3 = request.POST.get('placementPref3')
+# #         else:
+# #             experience = request.POST.get('gradExperience')
+# #             field_pref1 = request.POST.get('gradPref1')
+# #             field_pref2 = request.POST.get('gradPref2')
+
+# #         designation = request.POST.get('designation')
+# #         company_name = request.POST.get('company_name')
+
+# #         university = request.POST.get('university_name')
+
+# #         suggestions = request.POST.get('suggestion')
+
+# #         recommendations = request.POST.get('referral')
+
+# #         core_branch = request.POST.get('core')
+# #         branch_subdivision = request.POST.get('subdivisions')
+
+# #         print(branch_subdivision)
+
+# #         preferred_mentees = request.POST.get('no_of_mentees')
+
+# #         registration = Registration(fullname=fullname or "NA", email=email or "NA", department=department or "NA", rollno=rollno or "NA", department_other=department_other or "NA",
+# #                                     degree=degree or "NA", degree_other=degree_other or "NA", graduation_year=graduation_year or "NA", field_pref3=field_pref3 or "NA",
+# #                                     contact=contact or "NA", placementOrGrad=placementOrGrad or "NA", designation=designation or "NA", company_name=company_name or "NA", experience=experience or "NA", field_pref1=field_pref1 or "NA", field_pref2=field_pref2 or "NA", branch=(core_branch or "NA"), branch_subdivision=(branch_subdivision or "NA"), preferred_mentees=preferred_mentees or "NA", university_name=(university or "NA"), suggestions=suggestions or "NA", alumni_recommendations=recommendations or "NA")
+
+# #         registration.save()
+
+# #         return render(request, 'AsmpReg/thank.html')
+
+
+# #     context = {
+# #         'options': options.__dict__,
+# #     }
+
+# #     return render(request, 'AsmpReg/form.html', context)
+
+
+# # def thank(request):
+# #     return render(request, 'AsmpReg/thank.html')
+
+
+# # @api_view(['POST'])
+# # def testapi(request):
+# #     req_data = request.data
+# #     alumni_id = req_data['id']
+# #     duration = req_data['duration']
+# #     context = {'alumni_id': alumni_id, 'duration': duration}
+# #     return render(request, 'thank.html', context)
+
 # from django.shortcuts import render, redirect
 # from django.http import HttpResponse, response
 # from .models import Registration
@@ -6,61 +155,69 @@
 # from rest_framework.decorators import api_view
 # from . import options
 # from django.views.decorators.csrf import csrf_exempt
+# from django.conf import settings
+# from django.core.mail import send_mail
+# from .models import Preference
+
+
 
 
 # def export(request):
-# 	response = HttpResponse(content_type='text/csv')
-# 	writer = csv.writer(response)
-# 	writer.writerow([
-#             'First Name',
-#             'Last Name',
-#             'Department',
-#             'Other department',
-#             'degree',
-#             'Other Degree',
-#             'Hostel',
-#             'Year',
-#             'Contact',
-#             'Email',
-#             'Linkedin Profile',
-#             'City',
-#             'Country'
-#             'Designation',
-#             'Company Name',
-#             'Work Profile',
-#             'Preferences',
-#             'Mentees',
-#             'Dept Mentees',
-#             'options',
-#         ])
-# 	for registration in Registration.objects.all().values_list(
-#             'firstname',
-#             'lastname',
-#             'department',
-#             'department_other',
-#             'degree',
-#             'degree_other',
-#             'hostel',
-#             'year',
-#             'other_year',
-#             'contact',
-#             'email',
-#             'linkedin',
-#             'city',
-#             'country',
-#             'designation',
-#             'company_name',
-#             'work_profile',
-#             'Pref',
-#             'mentees',
-#             'dept_mentees',
-#             'suggestions',
-#             'alumni_recommendations'
-#         ):
-# 		writer.writerow(registration)
+#     response = HttpResponse(content_type='text/csv')
+#     writer = csv.writer(response)
+#     writer.writerow([
+#         'Full Name',
+#         'Department',
+#         'Other department',
+#         'degree',
+#         'Other Degree',
+#         'Hostel',
+#         'Year',
+#         'Contact',
+#         'Email',
+#         'Linkedin Profile',
+#         'City',
+#         'Country',
+#         'Designation',
+#         'Company Name',
+#         'Work Profile',
+#         'Preferences',
+#         'Mentees',
+#         'Dept of Mentees',
+#         'Options',
+#         'Preferences'
+#         'Availability',
+#         'Buddy'
+#     ])
 
-# 	response['Content-Disposition'] = 'attachment; filename="mentors_pmp23.csv"'
-# 	return response
+#     for registration in Registration.objects.all().values_list(
+#         'fullname',
+#         'department',
+#         'department_other',
+#         'degree',
+#         'degree_other',
+#         'hostel',
+#         'year',
+#         'other_year',
+#         'contact',
+#         'email',
+#         'linkedin',
+#         'city',
+#         'country',
+#         'designation',
+#         'company_name',
+#         'work_profile',
+#         'Pref',
+#         'mentees',
+#         'dept_mentees',
+#         'preferences',
+#         'availability',
+#         'buddy'
+#     ):
+#         writer.writerow(registration)
+
+#     response['Content-Disposition'] = 'attachment; filename="mentors_asmp23.csv"'
+#     return response
 
 
 # def index(request):
@@ -77,56 +234,63 @@
 #     def __str__(self):
 #         return self.fullname
 
+#     options_list = ['python', 'java', 'javascript', 'csharp', 'ruby']
+
 #     if request.method == 'POST':
 
 #         fullname = request.POST.get('fullname')
-#         rollno = request.POST.get('rollno')
 #         department = request.POST.get('department')
 #         department_other = request.POST.get('other_department')
 #         degree = request.POST.get('degree')
 #         degree_other = request.POST.get('degree_other')
-#         graduation_year = request.POST.get('graduation_year')
+#         hostel = request.POST.get('hostel')
+#         year = request.POST.get('year')
+#         other_year = request.POST.get('other_year')
 #         contact = request.POST.get('contact')
 #         email = request.POST.get('email')
-
-#         placementOrGrad = request.POST.get('placementOrGrad')
-
-#         field_pref3 = "NA"
-
-#         if (placementOrGrad == 'placement'):
-#             experience = request.POST.get('placementExperience')
-#             field_pref1 = request.POST.get('placementPref1')
-#             field_pref2 = request.POST.get('placementPref2')
-#             field_pref3 = request.POST.get('placementPref3')
-#         else:
-#             experience = request.POST.get('gradExperience')
-#             field_pref1 = request.POST.get('gradPref1')
-#             field_pref2 = request.POST.get('gradPref2')
-
+#         linkedin = request.POST.get('linkedin')
+#         city = request.POST.get('city')
+#         country = request.POST.get('country')
 #         designation = request.POST.get('designation')
 #         company_name = request.POST.get('company_name')
+#         work_profile = request.POST.get('work_profile')
+#         pref = request.POST.get('pref')
+#         mentees = request.POST.get('mentees')
+#         dept_mentees = request.POST.get('dept_mentees')
+#         preferences = request.POST.getlist('preferences')
+#         availability = request.POST.get('availability')
+#         buddy = request.POST.get('buddy')
+#         selected_options = request.POST.getlist('languages')
 
-#         university = request.POST.get('university_name')
+#         preferences_str = ", ".join(preferences)
 
-#         suggestions = request.POST.get('suggestion')
-
-#         recommendations = request.POST.get('referral')
-
-#         core_branch = request.POST.get('core')
-#         branch_subdivision = request.POST.get('subdivisions')
-
-#         print(branch_subdivision)
-
-#         preferred_mentees = request.POST.get('no_of_mentees')
-
-#         registration = Registration(fullname=fullname or "NA", email=email or "NA", department=department or "NA", rollno=rollno or "NA", department_other=department_other or "NA",
-#                                     degree=degree or "NA", degree_other=degree_other or "NA", graduation_year=graduation_year or "NA", field_pref3=field_pref3 or "NA",
-#                                     contact=contact or "NA", placementOrGrad=placementOrGrad or "NA", designation=designation or "NA", company_name=company_name or "NA", experience=experience or "NA", field_pref1=field_pref1 or "NA", field_pref2=field_pref2 or "NA", branch=(core_branch or "NA"), branch_subdivision=(branch_subdivision or "NA"), preferred_mentees=preferred_mentees or "NA", university_name=(university or "NA"), suggestions=suggestions or "NA", alumni_recommendations=recommendations or "NA")
+#         registration = Registration(fullname=fullname or "NA", email=email or "NA", department=department or "NA", department_other=department_other or "NA",
+#                                     degree=degree or "NA", degree_other=degree_other or "NA", year=year or "NA", hostel=hostel or "NA", other_year=other_year or "NA", linkedin=linkedin or "NA", city=city or "NA", country=country or "NA", pref=pref or "NA", mentees=mentees or "NA", 
+#                                     contact=contact or "NA", designation=designation or "NA", company_name=company_name or "NA", work_profile=work_profile or "NA", dept_mentees=dept_mentees or "NA", availability=availability or "NA", buddy = buddy or "NA"
+#                                     , preferences=preferences_str)
 
 #         registration.save()
 
-#         return render(request, 'AsmpReg/thank.html')
+#         # Clear the existing preferences
+#         registration.preferences.clear()
 
+#         # Assign preferences using the set() method
+#         preferences_objs = Preference.objects.filter(name__in=preferences)
+#         registration.preferences.set(preferences_objs)
+
+
+#         context = {
+#             'preferences': Preference.objects.all(),
+#         }
+
+#         # Send confirmation email
+#         # recipient_email = registration.email
+#         # subject = 'Confirmation Email'
+#         # message = 'Thank you for filling out the form.'
+#         # sender_email = settings.DEFAULT_FROM_EMAIL
+#         # send_mail(subject, message, sender_email, [recipient_email])
+
+#         return render(request, 'AsmpReg/thank.html')
 
 #     context = {
 #         'options': options.__dict__,
@@ -147,25 +311,26 @@
 #     context = {'alumni_id': alumni_id, 'duration': duration}
 #     return render(request, 'thank.html', context)
 
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, response
+
+# views.py
+from django.shortcuts import render
+from django.http import HttpResponse
 from .models import Registration
-from django.core.exceptions import ValidationError
-import csv
 from rest_framework.decorators import api_view
 from . import options
-from django.views.decorators.csrf import csrf_exempt
+import csv
 
 
 def export(request):
     response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="mentors_asmp23.csv"'
+
     writer = csv.writer(response)
     writer.writerow([
-        'First Name',
-        'Last Name',
+        'Full Name',
         'Department',
         'Other department',
-        'degree',
+        'Degree',
         'Other Degree',
         'Hostel',
         'Year',
@@ -177,39 +342,53 @@ def export(request):
         'Designation',
         'Company Name',
         'Work Profile',
-        'Preferences',
-        'Mentees',
-        'Dept Mentees',
-        'Options',
-        'Availability',
-    ])
-    for registration in Registration.objects.all().values_list(
-        'firstname',
-        'lastname',
-        'department',
-        'department_other',
-        'degree',
-        'degree_other',
-        'hostel',
-        'year',
-        'other_year',
-        'contact',
-        'email',
-        'linkedin',
-        'city',
-        'country',
-        'designation',
-        'company_name',
-        'work_profile',
         'Pref',
-        'mentees',
-        'dept_mentees',
-        'suggestions',
-        'availability'
-    ):
-        writer.writerow(registration)
+        'Other field'
+        'No Preference',
+        'Final Year Undergrad',
+        'Other Undergrad',
+        'M.Tech Students',
+        'PhD Students',
+        'Mentees',
+        'Dept of Mentees',
+        'Availability',
+        'Buddy'
+    ])
 
-    response['Content-Disposition'] = 'attachment; filename="mentors_asmp23.csv"'
+    registrations = Registration.objects.all()
+
+    for registration in registrations:
+        preferences = ", ".join(
+            registration.preferences.values_list('name', flat=True))
+        writer.writerow([
+            registration.fullname,
+            registration.department,
+            registration.department_other,
+            registration.degree,
+            registration.degree_other,
+            registration.hostel,
+            registration.year,
+            registration.contact,
+            registration.email,
+            registration.linkedin,
+            registration.city,
+            registration.country,
+            registration.designation,
+            registration.company_name,
+            registration.work_profile,
+            registration.pref,
+            registration.field_other,
+            registration.preference_no_preference,
+            registration.preference_final_year_undergrad,
+            registration.preference_other_undergrad,
+            registration.preference_mtech_students,
+            registration.preference_phd_students,
+            registration.mentees,
+            registration.dept_mentees,
+            registration.availability,
+            registration.buddy
+        ])
+
     return response
 
 
@@ -221,49 +400,73 @@ def phonehome(request):
     return render(request, 'AsmpReg/phonehome.html')
 
 
-@csrf_exempt
 def mentorReg(request):
-
-    def __str__(self):
-        return self.fullname
-
-    options_list = ['python', 'java', 'javascript', 'csharp', 'ruby']
-
     if request.method == 'POST':
-
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        department = request.POST.get('department')
-        department_other = request.POST.get('other_department')
-        degree = request.POST.get('degree')
-        degree_other = request.POST.get('degree_other')
-        hostel = request.POST.get('hostel')
-        year = request.POST.get('year')
-        other_year = request.POST.get('other_year')
-        contact = request.POST.get('contact')
-        email = request.POST.get('email')
-        linkedin = request.POST.get('linkedin')
-        city = request.POST.get('city')
-        country = request.POST.get('country')
-        designation = request.POST.get('designation')
-        company_name = request.POST.get('company_name')
-        work_profile = request.POST.get('work_profile')
+        fullname = request.POST.get('fullname', 'NA')
+        department = request.POST.get('department', 'NA')
+        department_other = request.POST.get('other_department', 'NA')
+        degree = request.POST.get('degree', 'NA')
+        degree_other = request.POST.get('degree_other', 'NA')
+        hostel = request.POST.get('hostel', 'NA')
+        year = request.POST.get('year', 'NA')
+        contact = request.POST.get('contact', 'NA')
+        email = request.POST.get('email', 'NA')
+        linkedin = request.POST.get('linkedin', 'NA')
+        city = request.POST.get('city', 'NA')
+        country = request.POST.get('country', 'NA')
+        designation = request.POST.get('designation', 'NA')
+        company_name = request.POST.get('company_name', 'NA')
+        work_profile = request.POST.get('work_profile', 'NA')
         pref = request.POST.get('pref')
-        mentees = request.POST.get('mentees')
-        dept_mentees = request.POST.get('dept_mentees')
-        # suggestions = request.POST.get('suggestions')
-        availability = request.POST.get('availability')
-        selected_options = request.POST.getlist('languages')
+        field_other = request.POST.get('other_field', 'NA')
+        preference_no_preference = bool(
+            request.POST.get('preference_no_preference', False))
+        preference_final_year_undergrad = bool(
+            request.POST.get('preference_final_year_undergrad', False))
+        preference_other_undergrad = bool(
+            request.POST.get('preference_other_undergrad', False))
+        preference_mtech_students = bool(
+            request.POST.get('preference_mtech_students', False))
+        preference_phd_students = bool(
+            request.POST.get('preference_phd_students', False))
+        mentees = request.POST.get('mentees', 'NA')
+        dept_mentees = request.POST.getlist('dept_mentees', 'NA')
+        availability = request.POST.get('availability', 'NA')
+        buddy = request.POST.get('buddy', 'NA')
 
-        registration = Registration(firstname=firstname or "NA", lastname=lastname or "NA", email=email or "NA", department=department or "NA", department_other=department_other or "NA",
-                                    degree=degree or "NA", degree_other=degree_other or "NA", year=year or "NA", hostel=hostel or "NA", other_year=other_year or "NA", linkedin=linkedin or "NA", city=city or "NA", country=country or "NA", pref=pref or "NA", mentees=mentees or "NA", 
-                                    contact=contact or "NA", designation=designation or "NA", company_name=company_name or "NA", work_profile=work_profile or "NA", dept_mentees=dept_mentees or "NA", availability=availability)
-
-        registration.save()
+        registration = Registration.objects.create(
+            fullname=fullname,
+            department=department,
+            department_other=department_other,
+            degree=degree,
+            degree_other=degree_other,
+            hostel=hostel,
+            year=year,
+            contact=contact,
+            email=email,
+            linkedin=linkedin,
+            city=city,
+            country=country,
+            designation=designation,
+            company_name=company_name,
+            work_profile=work_profile,
+            preference_no_preference=preference_no_preference,
+            preference_final_year_undergrad=preference_final_year_undergrad,
+            preference_other_undergrad=preference_other_undergrad,
+            preference_mtech_students=preference_mtech_students,
+            preference_phd_students=preference_phd_students,
+            pref=pref,
+            field_other=field_other,
+            mentees=mentees,
+            dept_mentees=dept_mentees,
+            availability=availability,
+            buddy=buddy
+        )
 
         return render(request, 'AsmpReg/thank.html')
 
     context = {
+        
         'options': options.__dict__,
     }
 

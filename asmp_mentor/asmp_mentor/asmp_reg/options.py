@@ -317,7 +317,7 @@ COUNTRY_CHOICES = [
 
 ]
 
-PLACEMENT_FIELDS  = [
+FIELDS  = [
     ('analytics', 'Analytics'),
     ('civil_services', 'Civil Services/Govt. of India'),
     ('core_engineering', 'Core engineering'),
@@ -340,7 +340,50 @@ MENTEES = [
     ('4', '4'),
 ]
 
+PREFERENCES = [
+    ('no_preference', 'No preference'),
+    ('final_year_undergrad', 'Final year undergraduate students'),
+    ('other_undergrad', 'Other undergraduate students'),
+    ('mtech_students', 'M.Tech students'),
+    ('phd_students', 'PhD students'),
+]
 
+
+
+DEPT_MENTEES_FIELDS = [
+    ('No_preference_as_such', 'No preference as such'),
+    ('Aerospace_Engineering', 'Aerospace Engineering'),
+    ('Biosciences_&Bioengineering', 'Biosciences & Bioengineering'),
+    ('Centre_for_Policy_Studies-CPS', 'Centre for Policy Studies - CPS'),
+    ('Centre_for_Urban_Science&Engineering-C-USE',
+        'Centre for Urban Science & Engineering - C-USE'),
+    ('Centre_of_Studies_in_Resources_Engineering-CSRE',
+        'Centre of Studies in Resources Engineering - CSRE'),
+    ('Chemical_Engineering', 'Chemical Engineering'),
+    ('Chemistry', 'Chemistry'),
+    ('Civil_Engineering', 'Civil Engineering'),
+    ('Climate_Studies', 'Climate Studies'),
+    ('Computer_Science&Engineering', 'Computer Science & Engineering'),
+    ('Desai_Sethi_Centre_for_Entrepreneurship-DSCE',
+        'Desai Sethi Centre for Entrepreneurship - DSCE'),
+    ('Earth_Sciences', 'Earth Sciences'),
+    ('Educational_Technology', 'Educational Technology'),
+    ('Electrical_Engineering', 'Electrical Engineering'),
+    ('Energy_Science&Engineering', 'Energy Science & Engineering'),
+    ('Humanities&Social_Science', 'Humanities & Social Science'),
+    ('IITB-Monash_Research_Academy', 'IITB-Monash Research Academy'),
+    ('Industrial_Design_Centre', 'Industrial Design Centre'),
+    ('Mathematics', 'Mathematics'),
+    ('Mechanical_Engineering', 'Mechanical Engineering'),
+    ('Metallurgical_Engineering&_Materials_Science',
+        'Metallurgical Engineering & Materials Science'),
+    ('Physics', 'Physics'),
+    ('Shailesh_J.Mehta_School_of_Management',
+        'Shailesh J. Mehta School of Management'),
+    ('Systems&_Control_Engineering', 'Systems & Control Engineering'),
+    ('CESE', 'CESE'),
+    ('Other', 'Other')
+]
 # BRANCH_SUBDIVISION_CHOICES = {
 #     'aero': [
 #         ('Aerospace', 'Aerospace'),
