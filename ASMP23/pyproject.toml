@@ -3,7 +3,6 @@ name = "asmp-mentor"
 version = "0.1.0"
 description = "This is ASMP mentor portal, first time by SARC Web"
 authors = ["PranitaR12 <prandive12@gmail.com>"]
-readme = "README.md"
 packages = [{include = "asmp_mentor"}]
 
 [tool.poetry.dependencies]
