@@ -21,7 +21,7 @@
         body {
           text-align: center;
           padding: 40px 0;
-          background: #cfba8a;
+          background: black;
         }
           h1 {
             color: white;
@@ -43,7 +43,7 @@
           margin-left:-15px;
         }
         .card {
-          background: #624F48;
+          background: skyblue;
           padding: 60px;
           border-radius: 4px;
           box-shadow: 0 2px 3px #C8D0D8;
@@ -149,7 +149,7 @@
         body {
           font-family: Verdana, Geneva, sans-serif;
           font-size: 14px;
-          background: #cfba8a !important;
+          background: black !important;
       }
       .clearfix:after {
           content: "";
@@ -167,7 +167,7 @@
           margin: 4% auto 4%;
           position: relative;
           /* z-index: -1; */
-          border-top: 10px solid #624F48;
+          border-top: 10px solid skyblue;
           -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
           -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -257,7 +257,7 @@
           background: #fafafa;
       }
       .form_wrapper input[type="submit"] {
-          background: #624F48;
+          background: blue;
           height: 35px;
           line-height: 35px;
           width: 100%;
@@ -723,7 +723,7 @@
         }
         #active:checked ~ .wrapper{
           clip-path: circle(75%);
-          background-color: #cfba8a;
+          background-color: black;
         }
       
         .menu-btn{
@@ -743,7 +743,7 @@
           /*background: linear-gradient(-135deg, #c850c0, #4158d0);*/
           /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
          /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%); */
-          background: #624F48;
+          background: skyblue;
           transition: all 0.3s ease-in-out;
         }
         #active:checked ~ .menu-btn{
@@ -829,10 +829,18 @@
             filter: hue-rotate(360deg);
           }
         }
+
+        .card h1{
+            color: black !important;
+        }
+
+        .card p{
+            color: black !important;
+        }
         
       </style>
 </head>
-<body background-color="#cfba8a">
+<body background-color="black">
   <input style="display: none;" type="checkbox" id="active">
     <label for="active" class="menu-btn"><img style="width:45%" src="../static/img/threebar.png" /></label>
     <div class="wrapper">

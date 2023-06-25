@@ -16,7 +16,6 @@ HOSTEL_CHOICES = [
     ('hostel_15', 'Hostel 15'),
     ('tansa', 'Tansa'),
     ('qip', 'QIP'),
-    ('staff_quarter', 'Staff Quarter')
     
 ]
 
@@ -327,10 +326,11 @@ FIELDS  = [
     ('management', 'Management'),
     ('management_consulting', 'Management consulting'),
     ('marketing', 'Marketing'),
-    ('other', 'Other'),
     ('product_management', 'Product Management'),
     ('research', 'Research'),
-    ('strategy_consulting', 'Strategy consulting')
+    ('strategy_consulting', 'Strategy consulting'),
+    ('entrepreneurship', 'Entrepreneurship'),
+    ('other', 'Other'),
 ]
 
 MENTEES = [
