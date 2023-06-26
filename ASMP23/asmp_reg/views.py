@@ -396,6 +396,23 @@ def index(request):
     return render(request, 'AsmpReg/home.html')
 
 
+from django.http import JsonResponse
+from django.core import serializers
+
+def old_mentor(request, id):
+    try:
+        registration = Registration.objects.get(token=f'Mentor-{id}')
+        serialized_registration = serializers.serialize('json', [registration])
+        json_registration = serialized_registration[1:-1] 
+        return JsonResponse(json_registration, safe=False)
+    except Registration.DoesNotExist:
+        return JsonResponse({'error': 'Registration not found.'})
+        
+    
+    # return render(request, 'AsmpReg/home.html', context)
+    
+
+
 def phonehome(request):
     return render(request, 'AsmpReg/phonehome.html')
 
@@ -433,6 +450,7 @@ def mentorReg(request):
         dept_mentees = request.POST.getlist('dept_mentees', 'NA')
         availability = request.POST.get('availability', 'NA')
         buddy = request.POST.get('buddy', 'NA')
+        
 
         registration = Registration.objects.create(
             fullname=fullname,
@@ -462,6 +480,8 @@ def mentorReg(request):
             availability=availability,
             buddy=buddy
         )
+        
+        registration.save();
 
         return render(request, 'AsmpReg/thank.html')
 

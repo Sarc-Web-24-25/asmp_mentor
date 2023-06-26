@@ -1,9 +1,11 @@
 from django.db import models
 from .options import *
+import uuid
 
 
 class Registration(models.Model):
     id = models.AutoField(primary_key=True)
+    token = models.CharField(max_length=8, unique=True)
     fullname = models.CharField(max_length=255)
     department = models.CharField(
         max_length=255, choices=BRANCH_CHOICES, default='default_value'
@@ -52,4 +54,10 @@ class Registration(models.Model):
 
     def __str__(self):
         return self.fullname
+    
+    def save(self, *args, **kwargs):
+        if not self.token:
+            self.token = "Mentor-" + str(uuid.uuid4().hex)[:8]
+        super().save(*args, **kwargs)
+            
 

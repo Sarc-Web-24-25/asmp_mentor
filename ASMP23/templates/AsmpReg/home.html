@@ -492,6 +492,18 @@
   </footer>
       <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
+
+      <script>
+        fetch('/Mentor-' + '1d87612e')
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+
       <script>document.addEventListener('DOMContentLoaded', function() {
   var questions = document.getElementsByClassName('question');
   

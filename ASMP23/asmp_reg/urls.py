@@ -4,6 +4,7 @@ from asmp_reg import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('Mentor-<str:id>', views.old_mentor, name='index'),
     # path('registration/', views.register),
     # path('registration/regcom/', views.menteereg),
     path('2023_k_webCTM_achhe_hain', views.export, name="export"),
