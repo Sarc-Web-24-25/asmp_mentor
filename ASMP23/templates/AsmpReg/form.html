@@ -888,14 +888,23 @@
         </div>
         <div class="row clearfix">
           <div class="">
-            <form method="POST" action="mentorReg"> {% csrf_token %}
+              <form method="POST" action=""> {% csrf_token %}
+
               <div class="input_field">
-                <input type="text" name="fullname" placeholder="Full Name" required />
+                {% if json_registration and json_registration.fields %}
+                  <input value="{{json_registration.fields.fullname}}" type="text" name="fullname" placeholder="Full Name" required />
+                {% else %}
+                  <input type="text" name="fullname" placeholder="Full Name" required />
+                {% endif %}
               </div>
               <select name="department" id="department" style="width: 100%; padding: 6px; border: 1px solid #ccc;" onchange="showOtherDepartment(this);" required>
                 <option value="" select-disabled="true"> --Department-- </option>
               {% for key, value in options.BRANCH_CHOICES %}
+                {% if json_registration and json_registration.fields and key == json_registration.fields.department %}
+                  <option selected value={{key}}>{{value}}</option>
+                {% else %}
                 <option value={{key}}>{{value}}</option>
+                {% endif %}
               {% endfor %}
               </select>
 
@@ -910,7 +919,11 @@
               <select onchange="showOtherDegree(this);" name="degree" style="width: 100%; padding: 6px; border: 1px solid #ccc;" required>
                 <option value="" select-disabled="true"> --Degree-- </option>
                 {% for key, value in options.DEGREE_CHOICES %}
+                {% if json_registration and json_registration.fields and key == json_registration.fields.degree %}
+                  <option selected value={{key}}>{{value}}</option>
+                {% else %}
                 <option value={{key}}>{{value}}</option>
+                {% endif %}
               {% endfor %}
               </select>
              
@@ -921,7 +934,11 @@
               <select name="hostel" id="hostel" style="width: 100%; padding: 6px; border: 1px solid #ccc;" onchange="showOtherHostel(this);" required>
                 <option value="" select-disabled="true"> --Hostel-- </option>
               {% for key, value in options.HOSTEL_CHOICES %}
-                <option value={{key}}>{{value}}</option>
+              {% if json_registration and json_registration.fields and key == json_registration.fields.hostel %}
+              <option selected value={{key}}>{{value}}</option>
+            {% else %}
+            <option value={{key}}>{{value}}</option>
+            {% endif %}
               {% endfor %}
               </select>
 
@@ -931,44 +948,126 @@
           <select name="year" id="year" style="width: 100%; padding: 6px; border: 1px solid #ccc;" onchange="showOtherYear(this);" required>
                 <option value="" select-disabled="true"> --Year-- </option>
               {% for key, value in options.YEAR_CHOICES %}
-                <option value={{key}}>{{value}}</option>
+              {% if json_registration and json_registration.fields and key == json_registration.fields.year %}
+              <option selected value={{key}}>{{value}}</option>
+            {% else %}
+            <option value={{key}}>{{value}}</option>
+            {% endif %}
               {% endfor %}
               </select>
 
           <div class="input_field">
             <input id="other_year" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; display: none;" name="other_year"/>
           </div>
-              <div class="input_field"> 
+              <div class="input_field">
+                {% if json_registration and json_registration.fields and json_registration.fields.contact %}
+                    
+                <input value="{{json_registration.fields.contact}}" type="text" name="contact" placeholder="Contact Number" required />
+
+                {% else %}
+
                 <input type="text" name="contact" placeholder="Contact Number" required />
+
+                {% endif %}
+
               </div>
               <div class="input_field">
+                {% if json_registration and json_registration.fields and json_registration.fields.contact %}
+
+                <input value="{{json_registration.fields.email}}" type="email" name="email" placeholder="Email" required />
+
+                {% else %}
+
                 <input type="email" name="email" placeholder="Email" required />
+
+
+                {% endif %}
+
+
               </div>
 
 
               <div id="placementDiv" style="display: block;">
 
                 <div class="input_field"> 
-                  <input type="text" name="linkedin" placeholder="Linkedin Profile Link"  />
+
+                {% if json_registration and json_registration.fields and json_registration.fields.linkedin %}
+
+                  <input value="{{json_registration.fields.linkedin}}" type="text" name="linkedin" placeholder="Linkedin Profile Link"  />
+
+                {% else %}
+
+                <input type="text" name="linkedin" placeholder="Linkedin Profile Link"  />
+
+                {% endif %}
+
+
+
                 </div> 
                 <div class="input_field">
-                  <input type="text" name="city" placeholder="City"  />
+                {% if json_registration and json_registration.fields and json_registration.fields.city %}
+
+                  <input value="{{json_registration.fields.city}}" type="text" name="city" placeholder="City"  />
+
+
+                {% else %}
+
+                <input type="text" name="city" placeholder="City"  />
+
+
+                {% endif %}
+
+
                 </div> 
                 <select name="country" id="country" style="width: 100%; padding: 6px; border: 1px solid #ccc;" onchange="showOtherCountry(this);" required>
                 <option value="" select-disabled="true"> --Country-- </option>
               {% for key, value in options.COUNTRY_CHOICES %}
-                <option value={{key}}>{{value}}</option>
+              {% if json_registration and json_registration.fields and key == json_registration.fields.country %}
+              <option selected value={{key}}>{{value}}</option>
+            {% else %}
+            <option value={{key}}>{{value}}</option>
+            {% endif %}
               {% endfor %}
               </select><br></br>
                 <div class="input_field"> 
+                {% if json_registration and json_registration.fields and json_registration.fields.designation %}
+
+                  <input value="{{json_registration.fields.designation}}" type="text" name="designation" placeholder="Designation"  />
+
+                {% else %}
+
                   <input type="text" name="designation" placeholder="Designation"  />
+
+
+                {% endif %}
+
+
                 </div> 
                 <div class="input_field">
-                  <input type="text" name="company_name" placeholder="Company/Organization Name"  />
+                {% if json_registration and json_registration.fields and json_registration.fields.company_name %}
+
+                  <input value="{{json_registration.fields.company_name}}" type="text" name="company_name" placeholder="Company/Organization Name"  />
+
+
+                {% else %}
+                <input type="text" name="company_name" placeholder="Company/Organization Name"  />
+
+
+                {% endif %}
+
+
                 </div> 
 
                 <div class='form-label'>Work Profile</div>
+
+                {% if json_registration and json_registration.fields and json_registration.fields.work_profile %}
+
+                <textarea style="width:100%;height:120px; padding: 5px; border: 1px solid #ccc;" name="work_profile" placeholder="Explain in brief which field you are working in, any past experience and any post-graduation">{{json_registration.fields.work_profile}}</textarea>
+                {% else %}
                 <textarea style="width:100%;height:120px; padding: 5px; border: 1px solid #ccc;" name="work_profile" placeholder="Explain in brief which field you are working in, any past experience and any post-graduation"></textarea>
+
+
+                {% endif %}
 
 
 
@@ -977,7 +1076,11 @@
                   <select class="input_field pref" name="pref" style="width: 100%; padding: 6px; border: 1px solid #ccc;"onchange="showOtherField(this);" required>
                     <option value="" select-disabled="true"> --Select Area-- </option>
                   {% for key, value in options.FIELDS %}
-                    <option value={{key}}>{{value}}</option>
+                  {% if json_registration and json_registration.fields and key == json_registration.fields.pref %}
+                  <option selected value={{key}}>{{value}}</option>
+                {% else %}
+                <option value={{key}}>{{value}}</option>
+                {% endif %}
                   {% endfor %}
                   </select>
 
@@ -990,22 +1093,16 @@
                   <select  class="input_field pref" name="mentees" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
                     <option value="" select-disabled="true"> --Select Mentee-- </option>
                   {% for key, value in options.MENTEES %}
-                    <option value={{key}}>{{value}}</option>
+                  {% if json_registration and json_registration.fields and key == json_registration.fields.mentees %}
+                  <option selected value={{key}}>{{value}}</option>
+                {% else %}
+                <option value={{key}}>{{value}}</option>
+                {% endif %}
                   {% endfor %}
                   </select>
 
-                {% comment %} <div class='form-label'>Preferred Department for Mentees</div>
-                <div>
-                  <select onchange="checkCoreSelect(this)" class="input_field pref" name="dept_mentees" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
-                    <option value="" select-disabled="true"> --Select-- </option>
-                  {% for key, value in options.DEPT_MENTEES_FIELDS %}
-                    <option value={{key}}>{{value}}</option>
-                  {% endfor %}
-                  </select>
+                
 
-                  
-                </div>
-              </div> {% endcomment %}
               <div class='form-label'>Preferred Department for Mentees</div>
 <div>
     <select name="dept_mentees" id="dept_mentees" multiple>
@@ -1040,27 +1137,63 @@
 <div class='form-label'>Whom do you wish to mentor?</div>
 <div class="options">
   <label>
+    {% if json_registration and json_registration.fields and json_registration.fields.preference_no_preference %}
+    <input checked type="checkbox" name="preference_no_preference" value="1">
+    {% else %}
     <input type="checkbox" name="preference_no_preference" value="1">
+    {% endif %}
     No preference
   </label>
   <br>
   <label>
+    {% if json_registration and json_registration.fields and json_registration.fields.preference_final_year_undergrad %}
+
+    <input checked type="checkbox" name="preference_final_year_undergrad" value="1">
+    {% else %}
     <input type="checkbox" name="preference_final_year_undergrad" value="1">
+
+
+    {% endif %}
+
+
     Final year undergraduate students
   </label>
   <br>
   <label>
+    {% if json_registration and json_registration.fields and json_registration.fields.preference_other_undergrad %}
+
+    <input checked type="checkbox" name="preference_other_undergrad" value="1">
+    {% else %}
     <input type="checkbox" name="preference_other_undergrad" value="1">
+
+
+    {% endif %}
     Other undergraduate students
   </label>
   <br>
   <label>
+    {% if json_registration and json_registration.fields and json_registration.fields.preference_mtech_students %}
+
+    <input checked type="checkbox" name="preference_mtech_students" value="1">
+    {% else %}
     <input type="checkbox" name="preference_mtech_students" value="1">
+
+    {% endif %}
+
+
     M.Tech students
   </label>
   <br>
   <label>
+    {% if json_registration and json_registration.fields and json_registration.fields.preference_mtech_students %}
+
+    <input checked type="checkbox" name="preference_phd_students" value="1">
+    {% else %}
     <input type="checkbox" name="preference_phd_students" value="1">
+
+    {% endif %}
+
+
     PhD students
   </label>
   <br>
