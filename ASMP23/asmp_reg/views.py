@@ -496,11 +496,10 @@ def mentorReg(request, id=None):
         serialized_registration = serializers.serialize('json', [registration])
         json_registration = serialized_registration[1:-1] 
         registration_dict = json.loads(json_registration)
-        print(registration_dict["fields"])
 
     context = {
         'options': options.__dict__,
-        'json_registration': registration_dict if id else {},
+        'json_registration': registration_dict if id is not None else {},
     }
 
     return render(request, 'AsmpReg/form.html', context)
