@@ -1,21 +1,21 @@
 HOSTEL_CHOICES = [
-    ('hostel_1', 'Hostel 1'),
-    ('hostel_2', 'Hostel 2'),
-    ('hostel_3', 'Hostel 3'),
-    ('hostel_4', 'Hostel 4'),
-    ('hostel_5', 'Hostel 5'),
-    ('hostel_6', 'Hostel 6'),
-    ('hostel_7', 'Hostel 7'),
-    ('hostel_8', 'Hostel 8'),
-    ('hostel_9', 'Hostel 9'),
-    ('hostel_10', 'Hostel 10'),
-    ('hostel_11', 'Hostel 11'),
-    ('hostel_12', 'Hostel 12'),
-    ('hostel_13', 'Hostel 13'),
-    ('hostel_14', 'Hostel 14'),
-    ('hostel_15', 'Hostel 15'),
-    ('tansa', 'Tansa'),
-    ('qip', 'QIP'),
+    ('Hostel 1', 'Hostel 1')
+    ('Hostel 2', 'Hostel 2')
+    ('Hostel 3', 'Hostel 3')
+    ('Hostel 4', 'Hostel 4')
+    ('Hostel 5', 'Hostel 5')
+    ('Hostel 6', 'Hostel 6')
+    ('Hostel 7', 'Hostel 7')
+    ('Hostel 8', 'Hostel 8')
+    ('Hostel 9', 'Hostel 9')
+    ('Hostel 10', 'Hostel 10')
+    ('Hostel 11', 'Hostel 11')
+    ('Hostel 12', 'Hostel 12')
+    ('Hostel 13', 'Hostel 13')
+    ('Hostel 14', 'Hostel 14')
+    ('Hostel 15', 'Hostel 15')
+    ('Tansa', 'Tansa')
+    ('QIP', 'QIP')
     
 ]
 
@@ -62,13 +62,13 @@ YEAR_CHOICES = [
 ]
 
 DEGREE_CHOICES = [
-    ('B.Tech', 'B.Tech'),
-    ('B.S', 'B.S'),
-    ('Dual Degree', 'Dual Degree'),
-    ('M.Tech', 'M.Tech'),
-    ('M.Sc', 'M.Sc'),
-    ('PhD', 'PhD'),
-    ('Other Degree', 'Other Degree'),
+    ('btech', 'B.Tech'),
+    ('bs', 'B.S'),
+    ('dual_degree', 'Dual Degree'),
+    ('mtech', 'M.Tech'),
+    ('msc', 'M.Sc'),
+    ('phd', 'PhD'),
+    ('other_degree', 'Other Degree'),
 ]
 
 BRANCH_CHOICES = [
@@ -290,6 +290,7 @@ COUNTRY_CHOICES = [
     ('Zambia', 'Zambia'),
     ('Zimbabwe', 'Zimbabwe')
 ]
+
 
 FIELDS  = [
     ('Analytics', 'Analytics')
