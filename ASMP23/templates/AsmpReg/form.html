@@ -1012,7 +1012,7 @@
 
                 {% else %}
 
-                <input type="text" name="city" placeholder="City"  />
+                <input type="text" name="city" placeholder="City"  required/>
 
 
                 {% endif %}
@@ -1032,11 +1032,11 @@
                 <div class="input_field"> 
                 {% if json_registration and json_registration.fields and json_registration.fields.designation %}
 
-                  <input value="{{json_registration.fields.designation}}" type="text" name="designation" placeholder="Designation"  />
+                  <input value="{{json_registration.fields.designation}}" type="text" name="designation" placeholder="Designation" required />
 
                 {% else %}
 
-                  <input type="text" name="designation" placeholder="Designation"  />
+                  <input type="text" name="designation" placeholder="Designation"  required/>
 
 
                 {% endif %}
@@ -1046,7 +1046,7 @@
                 <div class="input_field">
                 {% if json_registration and json_registration.fields and json_registration.fields.company_name %}
 
-                  <input value="{{json_registration.fields.company_name}}" type="text" name="company_name" placeholder="Company/Organization Name"  />
+                  <input value="{{json_registration.fields.company_name}}" type="text" name="company_name" placeholder="Company/Organization Name" required />
 
 
                 {% else %}
@@ -1062,9 +1062,9 @@
 
                 {% if json_registration and json_registration.fields and json_registration.fields.work_profile %}
 
-                <textarea style="width:100%;height:120px; padding: 5px; border: 1px solid #ccc;" name="work_profile" placeholder="Explain in brief which field you are working in, any past experience and any post-graduation">{{json_registration.fields.work_profile}}</textarea>
+                <textarea style="width:100%;height:120px; padding: 5px; border: 1px solid #ccc;" name="work_profile" placeholder="Explain in brief which field you are working in, any past experience and any post-graduation" required>{{json_registration.fields.work_profile}}</textarea>
                 {% else %}
-                <textarea style="width:100%;height:120px; padding: 5px; border: 1px solid #ccc;" name="work_profile" placeholder="Explain in brief which field you are working in, any past experience and any post-graduation"></textarea>
+                <textarea style="width:100%;height:120px; padding: 5px; border: 1px solid #ccc;" name="work_profile" placeholder="Explain in brief which field you are working in, any past experience and any post-graduation" required></textarea>
 
 
                 {% endif %}
@@ -1090,7 +1090,7 @@
 
                   <div class='form-label'>Number of mentees you are willing to mentor</div>
                 <div>
-                  <select  class="input_field pref" name="mentees" style="width: 100%; padding: 6px; border: 1px solid #ccc;">
+                  <select  class="input_field pref" name="mentees" style="width: 100%; padding: 6px; border: 1px solid #ccc;" required>
                     <option value="" select-disabled="true"> --Select Mentee-- </option>
                   {% for key, value in options.MENTEES %}
                   {% if json_registration and json_registration.fields and key == json_registration.fields.mentees %}
@@ -1105,7 +1105,7 @@
 
               <div class='form-label'>Preferred Department for Mentees</div>
 <div>
-    <select name="dept_mentees" id="dept_mentees" multiple>
+    <select name="dept_mentees" id="dept_mentees" multiple required>
         <option value="" disabled selected>--Select--</option>
         {% for key, value in options.DEPT_MENTEES_FIELDS %}
         <option value="{{ key }}">{{ value }}</option>
@@ -1134,7 +1134,7 @@
     <br>
   {% endfor %} {% endcomment %}
 </div> 
-<div class='form-label'>Whom do you wish to mentor?</div>
+<div class='form-label' >Whom do you wish to mentor?</div>
 <div class="options">
   <label>
     {% if json_registration and json_registration.fields and json_registration.fields.preference_no_preference %}
@@ -1199,7 +1199,22 @@
   <br>
 </div>
 
+<script>
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  var submitButton = document.querySelector('input[type="submit"]');
+  var form = document.querySelector('form');
 
+  form.addEventListener('submit', function(event) {
+    var checked = Array.from(checkboxes).some(function(cb) {
+      return cb.checked;
+    });
+
+    if (!checked) {
+      event.preventDefault(); // Prevent form submission
+      alert("Please select at least one option for the question 'Whom do you wish to mentor?'.");
+    }
+  });
+</script>
 
   <div class='form-label'>Do want to become an alum buddy for 1 extra mentee besides your given number of mentees?</div>
   <div class="options">
@@ -1213,6 +1228,22 @@
       No
     </label>
   </div> 
+ 
+    <div class="agreement" style="display: flex; align-items: center;  margin-top: 20px; color: red; ;">
+      <input type="radio" id="acceptance" name="acceptance" required>
+      <label for="acceptance" style = "font-size: 14px; padding-left: 2px;">I hereby accept that the information provided is correct</label>
+    </div>
+    <br>
+    
+  
+  <script>
+    var acceptanceRadio = document.getElementById('acceptance');
+    var submitButton = document.querySelector('input[type="submit"]');
+
+    acceptanceRadio.addEventListener('change', function() {
+      submitButton.disabled = !acceptanceRadio.checked;
+    });
+  </script>
               </div>
             </div>
                 
