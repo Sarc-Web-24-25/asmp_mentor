@@ -385,7 +385,6 @@ def export(request):
             registration.preference_phd_students,
             registration.mentees,
             registration.dept_mentees,
-            registration.availability,
             registration.buddy
         ])
 
@@ -448,7 +447,6 @@ def mentorReg(request):
             request.POST.get('preference_phd_students', False))
         mentees = request.POST.get('mentees', 'NA')
         dept_mentees = request.POST.getlist('dept_mentees', 'NA')
-        availability = request.POST.get('availability', 'NA')
         buddy = request.POST.get('buddy', 'NA')
         
 
@@ -477,7 +475,6 @@ def mentorReg(request):
             field_other=field_other,
             mentees=mentees,
             dept_mentees=dept_mentees,
-            availability=availability,
             buddy=buddy
         )
         

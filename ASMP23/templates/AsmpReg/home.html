@@ -19,6 +19,168 @@
             margin: 0px;
             padding: 0px;
         }
+
+        @media (max-width: 600px){
+          *{
+            width: 100%;
+            height: auto;
+          }
+
+          .asmp_title{
+            display: flex;
+            flex-direction: column;
+          }
+
+          
+          .title img{
+            margin-left: 6%;
+            margin-top: 15% !important;
+            width: 65vw !important;
+          }
+
+          .main_body{
+            padding: 0;
+            margin: 0;
+          }
+          
+          .asmp_content{
+            padding-left: 20px !important;
+          }
+
+          .asmp_dist img{
+            width: 100vw !important;
+          }
+
+          .structure h2{
+            font-size: 30px !important;
+          }
+
+          .asmp_row{
+            display: none !important;
+          }
+
+          .asmp_row_phone {
+            display: flex !important;
+            flex-direction: column;
+            margin-bottom: 60px;
+          }
+
+          .asmp_circle_phone {
+            width: 90%;
+            border-radius: 0%;
+            background-color: #000090;
+            display: flex !important;
+            font-weight: bold;
+            margin-left: 5%;
+            margin-right: 5%;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            color: #fff;
+            font-size: 20px;
+          }
+
+          .asmp_box_phone {
+            background-color: skyblue;
+            margin-left: 5%;
+            margin-right: 5%;
+            padding: 10px;
+            width: 90%;
+            border-radius: 0px;
+            font-size: 20px;
+          }
+          
+          .asmp_dist h2{
+            font-size: 30px !important;
+          }
+
+          .team_members{
+            display: flex;
+            flex-direction: column !important;      
+          }
+          .member-photo {
+            border-radius: 50%;
+            width: 170px !important;
+            height: 170px !important;
+            object-fit: cover;
+            margin-bottom: 10px;
+            margin-right: 0px !important;
+            margin-left: 0px !important;
+            margin-top: 10%;
+           }
+           .member-name {
+               margin-bottom: 5px;
+               font-size: 20px !important;
+               color: #fff
+           }
+        
+            .member-details{
+                margin-bottom: 5px;
+                font-size: 16px !important;
+                color: #fff
+            }
+        
+           .social-media a{
+              dsiplay: none !important;
+           }
+
+           .footer_container{
+            display: none;
+           }
+
+           .text-center{
+            padding-left: 12% !important;
+           }
+
+           .navbar{
+            display: none !important;
+           }
+
+              .navbar_phone {
+      background-color: blue;
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      color: white;
+    }
+
+    .navbar-logo_phone {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .navbar-menu_phone {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 1;
+      background-color: blue;
+      padding: 10px;
+      color: white;
+    }
+
+    .navbar-item_phone {
+      margin-bottom: 5px;
+    }
+
+    /* Hamburger Styles */
+    .navbar-toggle {
+      display: inline-block;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .navbar-toggle span {
+      display: block;
+      height: 2px;
+      background-color: white;
+      margin-bottom: 5px;
+    }
+        }
         .main_body {
           background-color: BLACK;
           {% comment %} background-image: url('c:\Users\ASUS\Pictures\asmp_bg.png'); {% endcomment %}
@@ -29,6 +191,7 @@
           justify-content: center; 
   
         }
+
         .asmp_image {
           padding-top: 5vh;
           display: flex;
@@ -130,6 +293,7 @@
 }
         .navbar {
             display: flex;
+            flex-direction: row !important;
             align-items: center;
             justify-content: space-between;
             padding: 1px 50px;
@@ -167,6 +331,13 @@
         .nav__link:hover {
             background-color: black;
             color: white;
+        }
+
+        .title img{
+          padding: 0.2rem; 
+          width: 35vw; 
+          height: auto; 
+          margin-top: 3%
         }
 .faq {
   border: 1px solid skyblue;
@@ -253,6 +424,17 @@
   padding: 5%;
 }
 
+.structure_phone{
+  display: none;
+}
+
+.asmp_row_phone{
+  display: none;
+}
+
+.asmp_circle_phone{
+  display: none;
+}
         /* Contact section */
         
            .team-members {
@@ -300,18 +482,22 @@
            .social-media a {
                margin-right: 5px;
                font-size: 25px;
-               color: #000;
+               color: white;
            }
         
            .social-media a:hover {
                color: #D5877D;
+           }
+
+           .navbar_phone{
+            display: none;
            }
     </style>
   </head>
   <body style="font-family: 'spartan';">
               <div class="navbar">
         <div class="logo">
-            <img src="{% static 'img/logo.png' %}" style="padding: 0.2rem; width: 7vw; height: auto;">
+            <img src="{% static 'img/sarc_logo_white.png' %}" style="padding: 0.2rem; width: 7vw; height: auto;">
         </div>
     
         <div class="nav__links">
@@ -319,9 +505,33 @@
             <a href="#faq" class="nav__link">FAQs</a>
             {% comment %} <a href="#testimonials" class="nav__link">Testimonials</a> {% endcomment %}
             <a href="#contact" class="nav__link">Contact</a>
-            <a href="#mentor" class="nav__link">Register</a>
+            <a href="/mentorReg" class="nav__link">Register</a>
         </div>
     </div>
+<nav class="navbar_phone">
+    <img src="sarc_logo_white.png" alt="Logo" class="navbar-logo">
+    <div class="navbar-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="navbar-menu_phone" id="menu">
+      <div class="navbar-item">About</div>
+      <div class="navbar-item">Contact</div>
+      <div class="navbar-item">FAQs</div>
+    </div>
+  </nav>
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      if (menu.style.display === "none" || menu.style.display === "") {
+        menu.style.display = "block";
+      } else {
+        menu.style.display = "none";
+      }
+    }
+  </script>
+
     <div class="main_body">
 
       <div class="container">
@@ -331,7 +541,7 @@
       
 
       <div class="title">
-            <img src="{% static 'img/title.png' %}" style="padding: 0.2rem; width: 35vw; height: auto; margin-top: 3%";>
+            <img src="{% static 'img/title.png' %}">
         </div>
 
 
@@ -339,7 +549,7 @@
   </div>
 </div>
 
-
+      <section id="about">
         <div class="asmp_title">
           <div class="asmp_content">
             <h2>ABOUT ASMP</h2>
@@ -352,7 +562,10 @@
             <img src={% static 'img/asmp_bg1.png' %} alt="Image Description">
           </div>
         </div>
+      </section>
+     
         <div class="faq">
+        <section id="faq">
           <div class="question">Why should I become an ASMP mentor? </div>
           <div class="answer"><p>Bob Proctor rightly said that a mentor is someone who sees more talent and ability within you, than you see in yourself, and helps bring it out of you.<br></br>
           The primary objective of this program is to offer students a long-lasting source of inspiration and guidance—an exemplary figure who can serve as a beacon of hope during challenging times. The mentors have personally experienced and overcome the hardships and obstacles that students are currently facing or will encounter in their future journeys and are, thus, the best people to look up to.<br></br>
@@ -369,11 +582,12 @@
 </div>
 <div class="faq">
           <div class="question">What is Alum Buddy? </div>
-          <div class="answer"><p>Bob Proctor rightly said that a mentor is someone who sees more talent and ability within you, than you see in yourself, and helps bring it out of you.<br></br>
-          The primary objective of this program is to offer students a long-lasting source of inspiration and guidance—an exemplary figure who can serve as a beacon of hope during challenging times. The mentors have personally experienced and overcome the hardships and obstacles that students are currently facing or will encounter in their future journeys and are, thus, the best people to look up to.<br></br>
-        Your invaluable wealth of knowledge, combined with both your triumphs and setbacks, is essential in assisting students with understanding and resolving various career-related matters.<br></br>
-      Furthermore, this program presents an opportunity to actively engage with the curiosity and enthusiasm of young minds, fostering meaningful mentor-student relationships that bring both personal and professional fulfillment.<br></br></div>
-</div>
+          <div class="answer"><p>The Alum Buddy Program is a new addition to our ASMP (Alumni Student Mentorship Program), designed to foster support and guidance for students. 
+            As an alum buddy, you have the opportunity to serve as a mentor to a student, providing valuable insights and assistance on various life matters. 
+            From navigating everyday challenges to promoting mental and overall wellbeing, this yearlong mentorship program aims to create a strong foundation for personal and academic growth.
+          </div>
+        </div>
+      </section>
 
 <div class="asmp_dist">
   <h2> DISTRIBUTION OF MENTORS </h2>
@@ -425,6 +639,54 @@
 </div>
 </div>
 
+
+<div class="asmp_row_phone">
+  <div class="asmp_circle_phone">Allocation of Mentees</div>
+  <div class="asmp_box_phone">Alumni mentors have freedom to choose the number of mentees. 
+    Allocation is done on the basis of aligned interests of the mentor and mentee in their career fields. 
+    Alumni and students decide on preset goals, including a mode and frequency of communication as per convenience to make the most out of the program.
+  </div>
+  </div>
+<div class="asmp_row_phone">
+  <div class="asmp_circle_phone">Break the Ice</div>
+  <div class="asmp_box_phone">Break the Ice is the flagship event of the Alumni Student Mentorship Program that is conducted during the Alumination. 
+    The event focuses on bringing mentors and mentees involved in the regular ASMP phase together so that they can interact with each other over lunch . 
+    Besides lunch, a number of other informal activities are organized and a photo booth is also set up so as to create an atmosphere suited for an open and free interaction.
+  </div>
+  
+</div>
+<div class="asmp_row_phone">
+  <div class="asmp_circle_phone">Shadow Program </div>
+  <div class="asmp_box_phone">Students get the opportunity to visit alumni workplaces and gain insights into corporate life. 
+    The program involves discussions with alumni, introductions to co-workers, and observations of work methodologies. 
+    Past visits have included companies like the Bombay Stock Exchange (BSE), National Stock Exchange (NSE), and Hindustan Unilever Limited (HUL).</div>
+  </div>
+<div class="asmp_row_phone">
+  <div class="asmp_circle_phone">Group Mentoring </div>
+  <div class="asmp_box_phone">Group mentoring is a networking and learning opportunity where students can connect with successful alumni and fellow students who share similar interests. 
+    In these sessions, experienced alumni from various fields such as finance, consulting, IT, analytics, and product management interact with small groups of 4-5 students in an offline format. 
+    It's a chance to gain insights, ask questions, and receive guidance in a focused and personalized setting, allowing the students to explore specific career options and expand their professional network.
+  </div>
+  
+</div>
+<div class="asmp_row_phone">
+  <div class="asmp_circle_phone">Nail the Prep</div>
+  <div class="asmp_box_phone">SARC provides an opportunity to all third year students to be a part of mock internship interview program - Nail The Prep, which is planned to engage students in mock interviews with our highly esteemed alumni. 
+    NTP generally happens in July, wherein our alumni with the experience in different fields like Finance, consult, PM, IT, software etc. take mock interviews of students who are targeting internships. 
+    NTP also involves a QnA session named as Ask The Alum (ATA) to clarify students’ doubts about internship season.
+  </div>
+</div>
+<div class="asmp_row_phone">
+  <div class="asmp_circle_phone">Transverse Mentoring</div>
+  <div class="asmp_box_phone">Two alumni, one from each career field, contribute to assisting the students in determining which path to pursue. 
+    This opportunity provides an environment for open discussion about the required skills, work type, and future perspective of both jobs. 
+    This brainstorming session is conducted in batches of limited number of students. 
+  </div>
+  
+</div>
+
+
+ <section id="contact">
 <div class="team_members">
 <h2> CONTACT ASMP </h2>
 <div class="team-members">
@@ -456,6 +718,9 @@
 
   </div>
 </div>
+</section>
+
+
 
 
    <footer class="text-center text-white" style="background-color:#202020;" >
