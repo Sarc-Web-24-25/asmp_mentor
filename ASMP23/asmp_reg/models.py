@@ -57,9 +57,6 @@ class Registration(models.Model):
     preference_other_undergrad = models.BooleanField(default=False)
     preference_mtech_students = models.BooleanField(default=False)
     preference_phd_students = models.BooleanField(default=False)
-    availability = models.CharField(
-        max_length=255, default='Your Default Value'
-    )
     buddy = models.CharField(
         max_length=255, default='Your Default Value'
     )

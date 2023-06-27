@@ -453,7 +453,6 @@ def mentorReg(request, id=None):
                 request.POST.get('preference_phd_students', False))
             mentees = request.POST.get('mentees', 'NA')
             dept_mentees = request.POST.getlist('dept_mentees', 'NA')
-            availability = request.POST.get('availability', 'NA')
             buddy = request.POST.get('buddy', 'NA')
 
             registration = Registration.objects.create(
@@ -481,7 +480,6 @@ def mentorReg(request, id=None):
                 field_other=field_other,
                 mentees=mentees,
                 dept_mentees=dept_mentees,
-                availability=availability,
                 buddy=buddy
             )
         else:
@@ -514,7 +512,6 @@ def mentorReg(request, id=None):
                 request.POST.get('preference_phd_students', False))
             mentees = request.POST.get('mentees', 'NA')
             dept_mentees = request.POST.getlist('dept_mentees', 'NA')
-            availability = request.POST.get('availability', 'NA')
             buddy = request.POST.get('buddy', 'NA')
 
             registration = Registration.objects.get(token=id)
@@ -543,7 +540,6 @@ def mentorReg(request, id=None):
             registration.field_other = field_other
             registration.mentees = mentees
             registration.dept_mentees = dept_mentees
-            registration.availability = availability
             registration.buddy = buddy
 
         registration.save()
@@ -644,3 +640,48 @@ def send_confirmation_mail(
         print(e, "this is error while login smtp or sending")
         leftUsers.append(emailid)
         pass
+
+
+import os
+
+
+leftUsers= []
+
+
+
+def add_mentor_data():
+    file_path = os.path.join(os.getcwd(), 'LastYearData', 'mentorData.csv')
+    with open(file_path, 'r', encoding='utf-8-sig') as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            try:
+                registration = Registration.objects.create(
+                fullname=row['fullname'] or "NA",
+                department=row['department'] or "NA",
+                degree=row['degree'] or "NA",
+                hostel=row['hostel'] or "NA",
+                year=row['graduation_year'] or "NA",
+                contact=row['contact'] or "NA",
+                email=row['email'] or "NA",
+                linkedin=row['linkedin'] or "NA",
+                city=row['city'] or "NA",
+                country=row['country'] or "NA",
+                designation=row['designation'] or "NA",
+                company_name=row['company_name'] or "NA",
+                work_profile=row['work_profile'] or "NA",
+                preference_no_preference=row['preference_no_preference'] or False,
+                preference_final_year_undergrad=row['preference_final_year_undergrad'] or False,
+                preference_phd_students=row['preference_phd_students'] or False,
+                pref=row['pref'] or "NA",
+                field_other="NA",
+                mentees=row['mentees'] or "NA",
+                buddy="no"
+            )
+                
+                registration.save()
+            
+                
+            except ValidationError as e:
+                leftUsers.append(row['email'])
+                print(e)
+                pass
