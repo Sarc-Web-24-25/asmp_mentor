@@ -366,8 +366,6 @@ def export(request):
     registrations = Registration.objects.all()
 
     for registration in registrations:
-        preferences = ", ".join(
-            registration.preferences.values_list('name', flat=True))
         writer.writerow([
             registration.fullname,
             registration.department,
@@ -391,8 +389,8 @@ def export(request):
             registration.preference_other_undergrad,
             registration.preference_mtech_students,
             registration.preference_phd_students,
-            registration.mentees,
             registration.dept_mentees,
+            registration.mentees,
             registration.buddy
         ])
 
