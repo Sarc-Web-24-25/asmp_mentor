@@ -360,6 +360,9 @@ DEPT_MENTEES_FIELDS = [
     ('CESE', 'CESE'),
     ('Other', 'Other')
 ]
+
+
+
 # BRANCH_SUBDIVISION_CHOICES = {
 #     'aero': [
 #         ('Aerospace', 'Aerospace'),

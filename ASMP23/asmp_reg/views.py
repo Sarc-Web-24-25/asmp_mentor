@@ -391,21 +391,26 @@ def export(request):
     return response
 
 
-def index(request):
+def new_mentor_home(request):
     return render(request, 'AsmpReg/home.html')
 
 
 from django.http import JsonResponse
 from django.core import serializers
+import json
+import html
 
-def old_mentor(request, id):
+def old_mentor_home(request, id):
     try:
         registration = Registration.objects.get(token=f'Mentor-{id}')
         serialized_registration = serializers.serialize('json', [registration])
         json_registration = serialized_registration[1:-1] 
-        return JsonResponse(json_registration, safe=False)
+        registration_dict = json.loads(json_registration)
+        context = {'json_registration': registration_dict}
+        return render(request, 'AsmpReg/home.html', context)
+        
     except Registration.DoesNotExist:
-        return JsonResponse({'error': 'Registration not found.'})
+        return render(request, 'AsmpReg/home.html', {})
         
     
     # return render(request, 'AsmpReg/home.html', context)
@@ -416,7 +421,8 @@ def phonehome(request):
     return render(request, 'AsmpReg/phonehome.html')
 
 
-def mentorReg(request):
+def mentorReg(request, id=None):
+    
     if request.method == 'POST':
         fullname = request.POST.get('fullname', 'NA')
         department = request.POST.get('department', 'NA')
@@ -481,10 +487,20 @@ def mentorReg(request):
         registration.save();
 
         return render(request, 'AsmpReg/thank.html')
+    
+
+    
+    
+    if(id is not None):
+        registration = Registration.objects.get(token=id)
+        serialized_registration = serializers.serialize('json', [registration])
+        json_registration = serialized_registration[1:-1] 
+        registration_dict = json.loads(json_registration)
+        print(registration_dict["fields"])
 
     context = {
-        
         'options': options.__dict__,
+        'json_registration': registration_dict if id else {},
     }
 
     return render(request, 'AsmpReg/form.html', context)
