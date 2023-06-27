@@ -160,8 +160,6 @@
 # from .models import Preference
 
 
-
-
 # def export(request):
 #     response = HttpResponse(content_type='text/csv')
 #     writer = csv.writer(response)
@@ -265,7 +263,7 @@
 #         preferences_str = ", ".join(preferences)
 
 #         registration = Registration(fullname=fullname or "NA", email=email or "NA", department=department or "NA", department_other=department_other or "NA",
-#                                     degree=degree or "NA", degree_other=degree_other or "NA", year=year or "NA", hostel=hostel or "NA", other_year=other_year or "NA", linkedin=linkedin or "NA", city=city or "NA", country=country or "NA", pref=pref or "NA", mentees=mentees or "NA", 
+#                                     degree=degree or "NA", degree_other=degree_other or "NA", year=year or "NA", hostel=hostel or "NA", other_year=other_year or "NA", linkedin=linkedin or "NA", city=city or "NA", country=country or "NA", pref=pref or "NA", mentees=mentees or "NA",
 #                                     contact=contact or "NA", designation=designation or "NA", company_name=company_name or "NA", work_profile=work_profile or "NA", dept_mentees=dept_mentees or "NA", availability=availability or "NA", buddy = buddy or "NA"
 #                                     , preferences=preferences_str)
 
@@ -313,12 +311,22 @@
 
 
 # views.py
+import html
+import json
+from django.core import serializers
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Registration
 from rest_framework.decorators import api_view
 from . import options
 import csv
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+import smtplib
+from django.core.exceptions import ValidationError
 
 
 def export(request):
@@ -395,26 +403,19 @@ def new_mentor_home(request):
     return render(request, 'AsmpReg/home.html')
 
 
-from django.http import JsonResponse
-from django.core import serializers
-import json
-import html
-
 def old_mentor_home(request, id):
     try:
         registration = Registration.objects.get(token=f'Mentor-{id}')
         serialized_registration = serializers.serialize('json', [registration])
-        json_registration = serialized_registration[1:-1] 
+        json_registration = serialized_registration[1:-1]
         registration_dict = json.loads(json_registration)
         context = {'json_registration': registration_dict}
         return render(request, 'AsmpReg/home.html', context)
-        
+
     except Registration.DoesNotExist:
         return render(request, 'AsmpReg/home.html', {})
-        
-    
+
     # return render(request, 'AsmpReg/home.html', context)
-    
 
 
 def phonehome(request):
@@ -422,79 +423,140 @@ def phonehome(request):
 
 
 def mentorReg(request, id=None):
-    
-    if request.method == 'POST':
-        fullname = request.POST.get('fullname', 'NA')
-        department = request.POST.get('department', 'NA')
-        department_other = request.POST.get('other_department', 'NA')
-        degree = request.POST.get('degree', 'NA')
-        degree_other = request.POST.get('degree_other', 'NA')
-        hostel = request.POST.get('hostel', 'NA')
-        year = request.POST.get('year', 'NA')
-        contact = request.POST.get('contact', 'NA')
-        email = request.POST.get('email', 'NA')
-        linkedin = request.POST.get('linkedin', 'NA')
-        city = request.POST.get('city', 'NA')
-        country = request.POST.get('country', 'NA')
-        designation = request.POST.get('designation', 'NA')
-        company_name = request.POST.get('company_name', 'NA')
-        work_profile = request.POST.get('work_profile', 'NA')
-        pref = request.POST.get('pref')
-        field_other = request.POST.get('other_field', 'NA')
-        preference_no_preference = bool(
-            request.POST.get('preference_no_preference', False))
-        preference_final_year_undergrad = bool(
-            request.POST.get('preference_final_year_undergrad', False))
-        preference_other_undergrad = bool(
-            request.POST.get('preference_other_undergrad', False))
-        preference_mtech_students = bool(
-            request.POST.get('preference_mtech_students', False))
-        preference_phd_students = bool(
-            request.POST.get('preference_phd_students', False))
-        mentees = request.POST.get('mentees', 'NA')
-        dept_mentees = request.POST.getlist('dept_mentees', 'NA')
-        buddy = request.POST.get('buddy', 'NA')
-        
 
-        registration = Registration.objects.create(
-            fullname=fullname,
-            department=department,
-            department_other=department_other,
-            degree=degree,
-            degree_other=degree_other,
-            hostel=hostel,
-            year=year,
-            contact=contact,
-            email=email,
-            linkedin=linkedin,
-            city=city,
-            country=country,
-            designation=designation,
-            company_name=company_name,
-            work_profile=work_profile,
-            preference_no_preference=preference_no_preference,
-            preference_final_year_undergrad=preference_final_year_undergrad,
-            preference_other_undergrad=preference_other_undergrad,
-            preference_mtech_students=preference_mtech_students,
-            preference_phd_students=preference_phd_students,
-            pref=pref,
-            field_other=field_other,
-            mentees=mentees,
-            dept_mentees=dept_mentees,
-            buddy=buddy
-        )
-        
-        registration.save();
+    if request.method == 'POST':
+        if (not Registration.objects.filter(token=id).exists()):
+            fullname = request.POST.get('fullname', 'NA')
+            department = request.POST.get('department', 'NA')
+            department_other = request.POST.get('other_department', 'NA')
+            degree = request.POST.get('degree', 'NA')
+            degree_other = request.POST.get('degree_other', 'NA')
+            hostel = request.POST.get('hostel', 'NA')
+            year = request.POST.get('year', 'NA')
+            contact = request.POST.get('contact', 'NA')
+            email = request.POST.get('email', 'NA')
+            linkedin = request.POST.get('linkedin', 'NA')
+            city = request.POST.get('city', 'NA')
+            country = request.POST.get('country', 'NA')
+            designation = request.POST.get('designation', 'NA')
+            company_name = request.POST.get('company_name', 'NA')
+            work_profile = request.POST.get('work_profile', 'NA')
+            pref = request.POST.get('pref')
+            field_other = request.POST.get('other_field', 'NA')
+            preference_no_preference = bool(
+                request.POST.get('preference_no_preference', False))
+            preference_final_year_undergrad = bool(
+                request.POST.get('preference_final_year_undergrad', False))
+            preference_other_undergrad = bool(
+                request.POST.get('preference_other_undergrad', False))
+            preference_mtech_students = bool(
+                request.POST.get('preference_mtech_students', False))
+            preference_phd_students = bool(
+                request.POST.get('preference_phd_students', False))
+            mentees = request.POST.get('mentees', 'NA')
+            dept_mentees = request.POST.getlist('dept_mentees', 'NA')
+            availability = request.POST.get('availability', 'NA')
+            buddy = request.POST.get('buddy', 'NA')
+
+            registration = Registration.objects.create(
+                fullname=fullname,
+                department=department,
+                department_other=department_other,
+                degree=degree,
+                degree_other=degree_other,
+                hostel=hostel,
+                year=year,
+                contact=contact,
+                email=email,
+                linkedin=linkedin,
+                city=city,
+                country=country,
+                designation=designation,
+                company_name=company_name,
+                work_profile=work_profile,
+                preference_no_preference=preference_no_preference,
+                preference_final_year_undergrad=preference_final_year_undergrad,
+                preference_other_undergrad=preference_other_undergrad,
+                preference_mtech_students=preference_mtech_students,
+                preference_phd_students=preference_phd_students,
+                pref=pref,
+                field_other=field_other,
+                mentees=mentees,
+                dept_mentees=dept_mentees,
+                availability=availability,
+                buddy=buddy
+            )
+        else:
+            fullname = request.POST.get('fullname', 'NA')
+            department = request.POST.get('department', 'NA')
+            department_other = request.POST.get('other_department', 'NA')
+            degree = request.POST.get('degree', 'NA')
+            degree_other = request.POST.get('degree_other', 'NA')
+            hostel = request.POST.get('hostel', 'NA')
+            year = request.POST.get('year', 'NA')
+            contact = request.POST.get('contact', 'NA')
+            email = request.POST.get('email', 'NA')
+            linkedin = request.POST.get('linkedin', 'NA')
+            city = request.POST.get('city', 'NA')
+            country = request.POST.get('country', 'NA')
+            designation = request.POST.get('designation', 'NA')
+            company_name = request.POST.get('company_name', 'NA')
+            work_profile = request.POST.get('work_profile', 'NA')
+            pref = request.POST.get('pref')
+            field_other = request.POST.get('other_field', 'NA')
+            preference_no_preference = bool(
+                request.POST.get('preference_no_preference', False))
+            preference_final_year_undergrad = bool(
+                request.POST.get('preference_final_year_undergrad', False))
+            preference_other_undergrad = bool(
+                request.POST.get('preference_other_undergrad', False))
+            preference_mtech_students = bool(
+                request.POST.get('preference_mtech_students', False))
+            preference_phd_students = bool(
+                request.POST.get('preference_phd_students', False))
+            mentees = request.POST.get('mentees', 'NA')
+            dept_mentees = request.POST.getlist('dept_mentees', 'NA')
+            availability = request.POST.get('availability', 'NA')
+            buddy = request.POST.get('buddy', 'NA')
+
+            registration = Registration.objects.get(token=id)
+
+            registration.fullname = fullname
+            registration.department = department
+            # registration.department_other=department_other,
+            registration.degree = degree
+            # registration.degree_other=degree_other,
+            registration.hostel = hostel
+            registration.year = year
+            registration.contact = contact
+            registration.email = email
+            registration.linkedin = linkedin
+            registration.city = city
+            registration.country = country
+            registration.designation = designation
+            registration.company_name = company_name
+            registration.work_profile = work_profile
+            registration.preference_no_preference = preference_no_preference
+            registration.preference_final_year_undergrad = preference_final_year_undergrad
+            registration.preference_other_undergrad = preference_other_undergrad
+            registration.preference_mtech_students = preference_mtech_students
+            registration.preference_phd_students = preference_phd_students
+            registration.pref = pref
+            registration.field_other = field_other
+            registration.mentees = mentees
+            registration.dept_mentees = dept_mentees
+            registration.availability = availability
+            registration.buddy = buddy
+
+        registration.save()
+        send_confirmation_mail(registration.email, registration.fullname)
 
         return render(request, 'AsmpReg/thank.html')
-    
 
-    
-    
-    if(id is not None):
+    if (id is not None):
         registration = Registration.objects.get(token=id)
         serialized_registration = serializers.serialize('json', [registration])
-        json_registration = serialized_registration[1:-1] 
+        json_registration = serialized_registration[1:-1]
         registration_dict = json.loads(json_registration)
 
     context = {
@@ -516,3 +578,71 @@ def testapi(request):
     duration = req_data['duration']
     context = {'alumni_id': alumni_id, 'duration': duration}
     return render(request, 'thank.html', context)
+
+
+leftUsers = []
+
+
+def send_confirmation_mail(
+    emailid="akashbanger2@gmail.com",
+    to_person_name="User",
+):
+    strFrom = "sarc@iitb.ac.in"
+    strTo = emailid
+    userName = to_person_name
+    # subject = mail_subject
+    # text_content = text_content
+    msgRoot = MIMEMultipart("related")
+    msgRoot["Subject"] = "Alumni Student Mentorship Program | Registration Successful"
+    msgRoot["From"] = strFrom
+    msgRoot["To"] = strTo
+    msgRoot.preamble = "This is a multi-part message in MIME format."
+    msgAlternative = MIMEMultipart("alternative")
+    msgRoot.attach(msgAlternative)
+    msghtml = f'''
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Alumni Student Mentorship Program | Registration Confirmation </title>
+  </head>
+  <body style="font-family: Arial, sans-serif; line-height: 1.5; background-color: rgba(168, 216, 240, 0.2); margin: 0; padding: 0;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: rgba(168, 216, 240, 0.2); border-radius: 10px;">
+      <h1 style="font-size: 28px; color: #0A1172; text-align: center; margin-top: 0; margin-bottom: 20px;">Alumni Student Mentorship Program | Registration Confirmation</h1>
+      <p style="color: #000000;">Dear {userName},</p>
+      <p style="color: #000000;">
+        Thank you for successfully registering for the Alumni Student Mentorship Program (ASMP). We are thrilled to have you as part of our mentoring community!
+      </p>
+      <p style="color: #000000;">
+        Stay tuned for updates on upcoming mentoring sessions and events. We believe this program will create meaningful connections and contribute to the development of the next generation of leaders.
+      </p>
+      <p style="color: #000000;">
+        If you have any questions, You can contact:
+        
+      </p>
+      <p style="color: #0A1172;">
+       Aastha Sancheti: 1234498 <br/> Priyaank Sheth: 1234498
+      </p>
+      <p style="color: #000000;">We look forward to a successful mentorship journey with you!</p>
+    </div>
+  </body>
+</html>
+
+'''
+    msgText = MIMEText(
+        msghtml,
+        "html",
+    )
+
+    msgAlternative.attach(msgText)
+    smtp = smtplib.SMTP("smtp-auth.iitb.ac.in", 587)
+    smtp.starttls()
+
+    try:
+        smtp.login("sarc@iitb.ac.in", "87638c40a92a794bc81b6de03e5ae86c")
+        response = smtp.sendmail(strFrom, strTo, msgRoot.as_string())
+        smtp.quit()
+        return response
+    except Exception as e:
+        print(e, "this is error while login smtp or sending")
+        leftUsers.append(emailid)
+        pass
