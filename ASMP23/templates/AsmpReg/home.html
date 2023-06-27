@@ -22,10 +22,7 @@
         }
 
         @media (max-width: 600px){
-          *{
-            width: 100%;
-            height: auto;
-          }
+          
 
           .asmp_title{
             display: flex;
@@ -121,17 +118,7 @@
                 color: #fff
             }
         
-           .social-media a{
-              dsiplay: none !important;
-           }
 
-           .footer_container{
-            display: none;
-           }
-
-           .text-center{
-            padding-left: 12% !important;
-           }
 
            .navbar{
             display: none !important;
@@ -147,16 +134,12 @@
       position: relative;
     }
 
-    .navbar-logo_phone {
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
-    }
+ 
 
     .navbar-menu_phone {
       display: none;
       position: absolute;
-      top: 100%;
+      top: 70px;
       right: 0;
       z-index: 1;
       background-color: skyblue;
@@ -492,6 +475,13 @@
                 font-size: 17px;
                 color: #fff
             }
+
+            .social-media{
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+            }
         
            .social-media a {
                margin-right: 5px;
@@ -530,7 +520,7 @@
         </div>
     </div>
 <nav class="navbar_phone">
-    <img src="logo.png" alt="Logo" class="navbar-logo_phone">
+    <img style="width: 20%;" src="{% static 'img/sarc_logo_white.png' %}" >
     <div class="navbar-toggle" onclick="toggleMenu()">
       <span></span>
       <span></span>
@@ -733,7 +723,7 @@
  <section id="contact">
 <div class="team_members">
 <h2> CONTACT ASMP </h2>
-<div class="team-members">
+<div class="team-members" style="margin-bottom: 10%;">
   
 
         <div class="member" style="">
@@ -771,10 +761,10 @@
 
 
 
-  <footer class="text-center text-white" style="background-color:#202020;">
-    <div class="footer_container p-4">
+  <footer style="background-color:#202020; padding-left: 0px;">
+    <div class="footer_container">
       <!-- Section: Social media -->
-      <section class="mb-4">
+      <section style="text-align: center;" class="p-4">
         <!-- Facebook -->
         <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/SARC.IITB" role="button"><i
             class="fab fa-facebook-f"></i></a>
@@ -795,7 +785,7 @@
 
     </div>
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0); color:#d7e2e1;">
+    <div class="p-3" style="background-color: rgba(0, 0, 0, 0); color:#d7e2e1; text-align:center;">
       © 2023 Made with 💙 by
       <span style="color:#d7e2e1;">SARC</span>
     </div>
