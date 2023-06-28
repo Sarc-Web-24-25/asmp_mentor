@@ -368,7 +368,7 @@ def export(request):
 
     for registration in registrations:
         writer.writerow([
-            registration.token,
+            "https://asmp.sarc-iitb.org/" + registration.token,
             registration.fullname,
             registration.department,
             registration.department_other,
