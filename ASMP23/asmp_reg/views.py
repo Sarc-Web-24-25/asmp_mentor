@@ -612,7 +612,7 @@ def send_confirmation_mail(
   </head>
   <body style="font-family: Arial, sans-serif; line-height: 1.5; background-color: rgba(168, 216, 240, 0.2); margin: 0; padding: 0;">
     <div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: rgba(168, 216, 240, 0.2); border-radius: 10px;">
-      <h1 style="font-size: 28px; color: #0A1172; text-align: center; margin-top: 0; margin-bottom: 20px;">Alumni Student Mentorship Program | Registration Confirmation</h1>
+      <h1 style="font-size: 28px; color: #0A1172; text-align: center; margin-top: 0; margin-bottom: 20px;">Alumni Student Mentorship Program | Registration Confirmed</h1>
       <p style="color: #000000;">Dear {userName},</p>
       <p style="color: #000000;">
         Thank you for successfully registering for the Alumni Student Mentorship Program (ASMP). We are thrilled to have you as a part of our mentoring community!

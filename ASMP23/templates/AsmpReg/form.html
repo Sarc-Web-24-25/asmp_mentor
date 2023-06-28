@@ -946,7 +946,7 @@
             <input id="other_hostel" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; display: none;" name="other_hostel"/>
           </div>
           <select name="year" id="year" style="width: 100%; padding: 6px; border: 1px solid #ccc;" onchange="showOtherYear(this);" required>
-                <option value="" select-disabled="true"> --Year-- </option>
+                <option value="" select-disabled="true"> --Year of Graduation-- </option>
               {% for key, value in options.YEAR_CHOICES %}
               {% if json_registration and json_registration.fields and key == json_registration.fields.year %}
               <option selected value={{key}}>{{value}}</option>
@@ -1216,7 +1216,7 @@
   });
 </script>
 
-  <div class='form-label'>Do want to become an alum buddy for 1 extra mentee besides your given number of mentees?</div>
+  <div class='form-label'>Do you want to become an alum buddy for 1 extra fresher besides your given number of mentees?</div>
   <div class="options">
     <label>
       <input type="radio" name="buddy" value="yes">
