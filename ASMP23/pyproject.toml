@@ -10,6 +10,7 @@ python = "^3.11"
 django = "^4.2.2"
 djangorestframework = "^3.14.0"
 django-cors-headers = "^4.0.0"
+cors = "^1.0.1"
 
 
 [build-system]

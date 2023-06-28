@@ -31,11 +31,6 @@ ALLOWED_HOSTS = ["*"]
 #                          "http://127.0.0.1:8003", "https://asmp.sarc-iitb.org", "https://yearbook.sarc-iitb.org"]
 
 
-CORS_ALLOWED_ORIGINS = [
-    'https://asmp.sarc-iitb.org',
-    # Add any other trusted origins here
-]
-
 # CORS_ALLOW_ALL_ORIGINS = False
 
 # CORS_ORIGIN_ALLOW_ALL = True
@@ -48,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     "corsheaders",
+    "Cors",
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -55,14 +51,20 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+
+CORS_ALLOWED_ORIGINS = [
+    'https://asmp.sarc-iitb.org',
+    # Add any other trusted origins here
 ]
 
 ROOT_URLCONF = "asmp_mentor.urls"
