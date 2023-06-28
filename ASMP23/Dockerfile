@@ -6,7 +6,7 @@ RUN pip install --upgrade pip
 RUN pip install poetry
 RUN poetry config virtualenvs.create false
 COPY poetry.lock pyproject.toml ./
-RUN poetry install
+RUN poetry install --no-dev
 RUN pip install django django-cors-headers
 COPY wsgi-entrypoint.sh ./
 COPY . ./
