@@ -546,8 +546,17 @@ def mentorReg(request, id=None):
 
         registration.save()
         send_confirmation_mail(registration.email, registration.fullname)
+        
+        serialized_registration = serializers.serialize('json', [registration])
+        json_registration = serialized_registration[1:-1]
+        registration_dict = json.loads(json_registration)
+        
+        context = {
+            'json_registration': registration_dict if id is not None else {},
+        }
+        
 
-        return render(request, 'AsmpReg/thank.html')
+        return render(request, 'AsmpReg/thank.html', context)
 
     if (id is not None):
         registration = Registration.objects.get(token=id)
