@@ -335,7 +335,7 @@ def export(request):
 
     writer = csv.writer(response)
     writer.writerow([
-        'Token', 
+        'Personalized Link', 
         'Full Name',
         'Department',
         'Other department',
