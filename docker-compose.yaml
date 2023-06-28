@@ -7,7 +7,7 @@ services:
       context: ./ASMP23
       dockerfile: Dockerfile
     ports:
-      - "8002:8000"
+      - "8003:8000"
     entrypoint: /ASMP23/wsgi-entrypoint.sh
     volumes:
       - ./ASMP23:/ASMP23/
