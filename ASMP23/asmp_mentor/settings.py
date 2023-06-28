@@ -67,7 +67,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
-CSRF_TRUSTED_ORIGINS = ['asmp.sarc-iitb.org', 'https://asmp.sarc-iitb.org']
+CSRF_TRUSTED_ORIGINS = ['https://asmp.sarc-iitb.org']
 
 ROOT_URLCONF = "asmp_mentor.urls"
 
