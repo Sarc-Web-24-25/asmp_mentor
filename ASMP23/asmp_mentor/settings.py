@@ -31,6 +31,9 @@ CORS_ORIGIN_WHITELIST = ["http://0.0.0.0:8003",
                          "http://127.0.0.1:8003", "https://asmp.sarc-iitb.org", "https://yearbook.sarc-iitb.org"]
 
 
+CORS_ALLOWED_ORIGINS = ["*"]
+
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
