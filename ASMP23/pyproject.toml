@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "asmp-mentor"
+name = "BeastASMP"
 version = "0.1.0"
-description = "This is ASMP mentor portal, first time by SARC Web"
-authors = ["PranitaR12 <prandive12@gmail.com>"]
-packages = [{include = "asmp_mentor"}]
+description = "this is Asmp 2023"
+authors = ["akash-banger <akashbanger2@gmail.com>"]
+readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 django = "^4.2.2"
 djangorestframework = "^3.14.0"
 django-cors-headers = "^4.0.0"
