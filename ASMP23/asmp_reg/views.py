@@ -335,6 +335,7 @@ def export(request):
 
     writer = csv.writer(response)
     writer.writerow([
+        'Token', 
         'Full Name',
         'Department',
         'Other department',
@@ -367,6 +368,7 @@ def export(request):
 
     for registration in registrations:
         writer.writerow([
+            registration.token,
             registration.fullname,
             registration.department,
             registration.department_other,
@@ -682,6 +684,6 @@ def add_mentor_data():
             
                 
             except ValidationError as e:
-                leftUsers.append(row['email'])
+                leftUsers.append(row['fullname'])
                 print(e)
                 pass

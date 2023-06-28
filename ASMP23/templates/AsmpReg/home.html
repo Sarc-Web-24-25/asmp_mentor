@@ -514,9 +514,15 @@
         <div class="nav__links">
             <a href="#about" class="nav__link">About</a>
             <a href="#faq" class="nav__link">FAQs</a>
-            {% comment %} <a href="#testimonials" class="nav__link">Testimonials</a> {% endcomment %}
+            <a href="#initiatives" class="nav__link">Initiatives</a>
             <a href="#contact" class="nav__link">Contact</a>
-            <a href="/mentorReg" class="nav__link">Register</a>
+            {% if json_registration and json_registration.fields.token %}
+       <!-- Data exists in the context -->
+       <a href="mentorReg/{{json_registration.fields.token}}" class="nav__link">Register</a>
+       {% else %}
+       <a href="mentorReg" class="nav__link">Register</a>
+       <!-- Data does not exist in the context -->
+       {% endif %}
         </div>
     </div>
 <nav class="navbar_phone">
@@ -527,9 +533,11 @@
       <span></span>
     </div>
     <div class="navbar-menu_phone" id="menu">
-      <div class="navbar-item_phone">About</div>
-      <div class="navbar-item_phone">Contact</div>
-      <div class="navbar-item_phone">FAQs</div>
+      <a style="text-decoration: none; color: black;" href="#about"><div class="navbar-item_phone">About</div></a>
+      <a style="text-decoration: none; color: black;" href="#contact"><div class="navbar-item_phone">Contact</div></a>
+      <a style="text-decoration: none; color: black;" href="#faq"><div class="navbar-item_phone">FAQs</div></a>
+      <a style="text-decoration: none; color: black;" href="/mentorReg/{{json_registration.fields.token}}"><div class="navbar-item_phone">Register</div></a>
+
     </div>
   </nav>
 
@@ -612,7 +620,7 @@
         style="padding: 0.2rem; width: 40vw; height: auto; border: 5px solid #0a1172">
     </div>
 
-    <div class="structure">
+    <div id="initiatives" class="structure">
       <h2> STRUCTURES AND INITIATIVES BY ASMP </h2>
       <div class="asmp_row">
         <div class="asmp_circle">Allocation of Mentees</div>

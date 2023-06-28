@@ -1,16 +1,16 @@
 version: '2.2'
 
 services:
-  pmpbackend:
+  asmpbackend:
     restart: unless-stopped
     build:
-      context: ./BeastPMP
+      context: ./ASMP23
       dockerfile: Dockerfile
     ports:
-      - "8001:8000"
-    entrypoint: /BeastPMP/wsgi-entrypoint.sh
+      - "8002:8000"
+    entrypoint: /ASMP23/wsgi-entrypoint.sh
     volumes:
-      - ./BeastPMP:/BeastPMP/
+      - ./ASMP23:/ASMP23/
     expose:
       - 8000
     networks:
