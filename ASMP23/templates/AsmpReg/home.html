@@ -33,7 +33,7 @@
           .title img{
             margin-left: 6%;
             margin-top: 15% !important;
-            width: 65vw !important;
+            width: 75vw !important;
           }
 
           .main_body{
@@ -92,6 +92,11 @@
             font-size: 30px !important;
           }
 
+
+          .asmp_faqs h2{
+            font-size: 30px !important;
+          }
+
           .team_members{
             display: flex;
             flex-direction: column !important;      
@@ -124,6 +129,25 @@
             display: none !important;
            }
 
+           .nav_link_phone{
+            background-color: white;
+            color: black;
+            padding: 10px 10px;
+            border-radius: 38px;
+            transition: all 0.5s ease-in-out;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 25px;
+           }
+
+           .nav__link_phone{
+            color: black;
+            transition: all 0.5s ease-in-out;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+           }
+
                .navbar_phone {
       background-color: #0A1172;
       display: flex !important;
@@ -132,6 +156,8 @@
       padding: 10px;
       color: white;
       position: relative;
+      position: fixed;
+      width: 100%;
     }
 
  
@@ -328,7 +354,7 @@
 
         .title img{
           padding: 0.2rem; 
-          width: 35vw; 
+          width: 40vw; 
           height: auto; 
           margin-top: 3%
         }
@@ -358,6 +384,7 @@
 
     .answer {
       display: none;
+      width: 100% !important; 
     }
 
     .answer.expanded {
@@ -380,6 +407,14 @@
     }
 
     .asmp_dist h2 {
+      color: #a8d8f0;
+      text-align: center;
+      margin-bottom: 5%;
+      font-size: 40px;
+    }
+
+    
+    .asmp_faqs h2 {
       color: #a8d8f0;
       text-align: center;
       margin-bottom: 5%;
@@ -527,6 +562,7 @@
     </div>
 <nav class="navbar_phone">
     <img style="width: 20%;" src="{% static 'img/sarc_logo_white.png' %}" >
+    <div class="register_phone"><a href="/mentorReg" {{json_registration.fields.token}} class="nav_link_phone">Register</a></div>
     <div class="navbar-toggle" onclick="toggleMenu()">
       <span></span>
       <span></span>
@@ -534,9 +570,9 @@
     </div>
     <div class="navbar-menu_phone" id="menu">
       <a style="text-decoration: none; color: black;" href="#about"><div class="navbar-item_phone">About</div></a>
-      <a style="text-decoration: none; color: black;" href="#contact"><div class="navbar-item_phone">Contact</div></a>
       <a style="text-decoration: none; color: black;" href="#faq"><div class="navbar-item_phone">FAQs</div></a>
-      <a style="text-decoration: none; color: black;" href="/mentorReg/{{json_registration.fields.token}}"><div class="navbar-item_phone">Register</div></a>
+      <a style="text-decoration: none; color: black;" href="#contact"><div class="navbar-item_phone">Contact</div></a>
+     
 
     </div>
   </nav>
@@ -584,7 +620,9 @@
         </div>
       </section>
      
-        <div class="faq">
+        <div class="asmp_faqs">
+            <h2>FAQs</h2>
+        <div class="faq" style="width: 90vw;">
         <section id="faq">
           <div class="question">Why should I become an ASMP mentor? 
           <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon"></div>
@@ -593,7 +631,7 @@
         Your invaluable wealth of knowledge, combined with both your triumphs and setbacks, is essential in assisting students with understanding and resolving various career-related matters.<br></br>
       Furthermore, this program presents an opportunity to actively engage with the curiosity and enthusiasm of young minds, fostering meaningful mentor-student relationships that bring both personal and professional fulfillment.<br></br></div>
 </div>
-<div class="faq">
+<div class="faq" style="width: 90vw;">
   <div class="question">How can I create an impact in my mentee’s life through ASMP?
     <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon">
   </div>
@@ -603,7 +641,7 @@
   </div>
   
 </div>
-<div class="faq">
+<div class="faq" style="width: 90vw;">
           <div class="question">What is Alum Buddy? 
             <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon">
           </div>
@@ -613,6 +651,8 @@
           </div>
         </div>
       </section>
+
+    </div>
 
     <div class="asmp_dist">
       <h2> DISTRIBUTION OF MENTORS </h2>
