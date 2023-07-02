@@ -538,6 +538,51 @@
   margin-right: 10px;
   color: skyblue !important;
 }
+
+
+.testimonials{
+  margin-bottom: 5%;
+}
+.rectangle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-left: 5% !important;
+      margin-right: 5% !important;
+      width: 90%;
+      height: auto;
+      background-color: #87ceeb; /* Sky Blue background for the rectangle */
+      margin: 10px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .rectangle h1 {
+      font-size: 24px;
+      margin: 0;
+      padding: 5px;
+    }
+
+    .rectangle h3 {
+      font-size: 18px;
+      margin: 0;
+      padding: 5px;
+    }
+
+    .rectangle p {
+      font-size: 16px;
+      margin: 0;
+      padding: 5px;
+    }
+
+    .testimonials h2 {
+      font-size: 40px;
+      color: #a8d8f0;
+      text-align: center;
+
+    }
     </style>
   </head>
   <body style="font-family: 'spartan';">
@@ -550,6 +595,7 @@
             <a href="#about" class="nav__link">About</a>
             <a href="#faq" class="nav__link">FAQs</a>
             <a href="#initiatives" class="nav__link">Initiatives</a>
+            <a href="#testimonials" class="nav__link">Testimonials</a>
             <a href="#contact" class="nav__link">Contact</a>
             {% if json_registration and json_registration.fields.token %}
        <!-- Data exists in the context -->
@@ -571,6 +617,7 @@
     <div class="navbar-menu_phone" id="menu">
       <a style="text-decoration: none; color: black;" href="#about"><div class="navbar-item_phone">About</div></a>
       <a style="text-decoration: none; color: black;" href="#faq"><div class="navbar-item_phone">FAQs</div></a>
+      <div class="navbar-item_phone"><a href="#testimonials" class="nav__link_phone">Testimonials</a></div>
       <a style="text-decoration: none; color: black;" href="#contact"><div class="navbar-item_phone">Contact</div></a>
      
 
@@ -625,7 +672,7 @@
         <div class="faq" style="width: 90vw;">
         <section id="faq">
           <div class="question">Why should I become an ASMP mentor? 
-          <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon"></div>
+          <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon"></div>
           <div class="answer"><p>Bob Proctor rightly said that a mentor is someone who sees more talent and ability within you, than you see in yourself, and helps bring it out of you.<br></br>
           The primary objective of this program is to offer students a long-lasting source of inspiration and guidance—an exemplary figure who can serve as a beacon of hope during challenging times. The mentors have personally experienced and overcome the hardships and obstacles that students are currently facing or will encounter in their future journeys and are, thus, the best people to look up to.<br></br>
         Your invaluable wealth of knowledge, combined with both your triumphs and setbacks, is essential in assisting students with understanding and resolving various career-related matters.<br></br>
@@ -633,7 +680,7 @@
 </div>
 <div class="faq" style="width: 90vw;">
   <div class="question">How can I create an impact in my mentee’s life through ASMP?
-    <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon">
+    <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon">
   </div>
   <div class="answer">The program offers a platform for individual interaction with alumni from our institute, aiding in the resolution of diverse challenges faced by students during their campus journey and beyond.
     It presents a remarkable chance for students to enhance their interpersonal abilities and forge stronger connections with the esteemed alumni of IIT Bombay.
@@ -643,7 +690,7 @@
 </div>
 <div class="faq" style="width: 90vw;">
           <div class="question">What is Alum Buddy? 
-            <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon">
+            <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon">
           </div>
           <div class="answer"><p>The Alum Buddy Program is a new addition to our ASMP (Alumni Student Mentorship Program), designed to foster support and guidance for students. 
             As an alum buddy, you have the opportunity to serve as a mentor to a student, providing valuable insights and assistance on various life matters. 
@@ -766,6 +813,23 @@
   </div>
   
 </div>
+
+<section id="testimonials">
+<div class="testimonials">
+  <h2>TESTIMONIALS</h2>
+<div class="rectangle">
+    <h1>Sameer Desai</h1>
+    <h3>IIT Bombay’1992</h3>
+    <p>For nearly a decade, I've taken on the role of an ASMP mentor. What makes this experience truly remarkable is the opportunity it presents to connect with the vibrant minds of GenZ. The joy I derive from being a mentor stems from witnessing the transformative growth of my mentees. It's immensely fulfilling to play a part in their development, nurturing their talents, and observing the remarkable ways they shape their own futures.</p>
+  </div>
+
+  <div class="rectangle">
+    <h1>Rajat Chaturvedi</h1>
+    <h3>IIT Bombay’2018</h3>
+    <p>I was thrilled to receive the ASMP Program mail, eager to reconnect with my alma mater and give back to the institute that shaped my path. Fortunately, the experience has exceeded my expectations. Some mentorships have evolved into lasting friendships, extending beyond the program's end. After two successful years, I intend to continue mentoring for many more to come.</p>
+  </div>
+</div>
+</section>
 
 
  <section id="contact">
