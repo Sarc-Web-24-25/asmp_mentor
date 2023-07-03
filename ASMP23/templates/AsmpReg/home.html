@@ -122,9 +122,12 @@
                 font-size: 16px !important;
                 color: #fff
             }
-        
 
-
+            .employee-container{
+              display: flex;
+              flex-direction: column !important;
+            }
+    
            .navbar{
             display: none !important;
            }
@@ -583,6 +586,37 @@
       text-align: center;
 
     }
+
+            .employee-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .employee-card {
+      text-align: center;
+      margin-right: -5%;
+      margin-left: -5% ;
+    }
+
+    .employee-image {
+      width: 220px; /* Set the width and height as per your requirement */
+      height: 220px;
+      border-radius: 50%; /* To create a circular image */
+      object-fit: cover; /* To maintain aspect ratio */
+      border: 1px solid skyblue;
+      padding: 2% !important ;
+    }
+
+    .employee-name {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .employee-department {
+      color: white;
+    }
     </style>
   </head>
   <body style="font-family: 'spartan';">
@@ -866,6 +900,43 @@
         </div>
       </div>
 
+  </div>
+
+  <div class="employee-container">
+    <div class="employee-card">
+      <img src="{% static 'img/aastha_c.jpg' %}" alt="Employee 1" class="employee-image">
+      <div class="employee-name">Aastha Agrawal</div>
+      <div class="employee-department">+91 7389140324</div>
+    </div>
+
+    <div class="employee-card">
+      <img src="{% static 'img/nishit.jpg' %}" alt="Employee 2" class="employee-image">
+      <div class="employee-name">Nishit Moonat</div>
+      <div class="employee-department">+91 9399358126</div>
+    </div>
+
+    <div class="employee-card">
+      <img src="{% static 'img/tarun.jpg' %}" alt="Employee 3" class="employee-image">
+      <div class="employee-name">Tarun Kurapaty</div>
+      <div class="employee-department">+91 9676908924</div>
+    </div>
+
+    <div class="employee-card">
+      <img src="{% static 'img/anshika.jpg' %}" alt="Employee 4" class="employee-image">
+      <div class="employee-name">Anshika Mishra</div>
+      <div class="employee-department">+91 7987083011</div>
+    </div>
+
+    <div class="employee-card">
+      <img src={% static 'img/shreyas.jpg' %} alt="Employee 5" class="employee-image">
+      <div class="employee-name">Shreyas Sinha</div>
+      <div class="employee-department">+91 9119188492</div>
+    </div>
+    <div class="employee-card">
+      <img src={% static 'img/sahil.jpg' %} alt="Employee 5" class="employee-image">
+      <div class="employee-name">Sahil Choudhary</div>
+      <div class="employee-department">+91 9950809874</div>
+    </div>
   </div>
 </div>
 </section>
