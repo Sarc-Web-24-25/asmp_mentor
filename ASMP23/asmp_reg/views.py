@@ -364,7 +364,7 @@ def export(request):
         'Buddy'
     ])
 
-    registrations = Registration.objects.all()
+    registrations = Registration.objects.filter(isNew=True);
 
     for registration in registrations:
         writer.writerow([
@@ -393,7 +393,7 @@ def export(request):
             registration.preference_phd_students,
             registration.dept_mentees,
             registration.mentees,
-            registration.buddy
+            registration.buddy,
         ])
 
     return response
