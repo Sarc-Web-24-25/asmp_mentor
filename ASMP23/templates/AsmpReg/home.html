@@ -33,7 +33,7 @@
           .title img{
             margin-left: 6%;
             margin-top: 15% !important;
-            width: 65vw !important;
+            width: 75vw !important;
           }
 
           .main_body{
@@ -92,6 +92,11 @@
             font-size: 30px !important;
           }
 
+
+          .asmp_faqs h2{
+            font-size: 30px !important;
+          }
+
           .team_members{
             display: flex;
             flex-direction: column !important;      
@@ -117,11 +122,33 @@
                 font-size: 16px !important;
                 color: #fff
             }
-        
 
-
+            .employee-container{
+              display: flex;
+              flex-direction: column !important;
+            }
+    
            .navbar{
             display: none !important;
+           }
+
+           .nav_link_phone{
+            background-color: white;
+            color: black;
+            padding: 10px 10px;
+            border-radius: 38px;
+            transition: all 0.5s ease-in-out;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 25px;
+           }
+
+           .nav__link_phone{
+            color: black;
+            transition: all 0.5s ease-in-out;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
            }
 
                .navbar_phone {
@@ -132,6 +159,8 @@
       padding: 10px;
       color: white;
       position: relative;
+      position: fixed;
+      width: 100%;
     }
 
  
@@ -328,7 +357,7 @@
 
         .title img{
           padding: 0.2rem; 
-          width: 35vw; 
+          width: 40vw; 
           height: auto; 
           margin-top: 3%
         }
@@ -358,6 +387,7 @@
 
     .answer {
       display: none;
+      width: 100% !important; 
     }
 
     .answer.expanded {
@@ -380,6 +410,14 @@
     }
 
     .asmp_dist h2 {
+      color: #a8d8f0;
+      text-align: center;
+      margin-bottom: 5%;
+      font-size: 40px;
+    }
+
+    
+    .asmp_faqs h2 {
       color: #a8d8f0;
       text-align: center;
       margin-bottom: 5%;
@@ -503,6 +541,82 @@
   margin-right: 10px;
   color: skyblue !important;
 }
+
+
+.testimonials{
+  margin-bottom: 5%;
+}
+.rectangle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-left: 5% !important;
+      margin-right: 5% !important;
+      width: 90%;
+      height: auto;
+      background-color: #87ceeb; /* Sky Blue background for the rectangle */
+      margin: 10px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .rectangle h1 {
+      font-size: 24px;
+      margin: 0;
+      padding: 5px;
+    }
+
+    .rectangle h3 {
+      font-size: 18px;
+      margin: 0;
+      padding: 5px;
+    }
+
+    .rectangle p {
+      font-size: 16px;
+      margin: 0;
+      padding: 5px;
+    }
+
+    .testimonials h2 {
+      font-size: 40px;
+      color: #a8d8f0;
+      text-align: center;
+
+    }
+
+            .employee-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .employee-card {
+      text-align: center;
+      margin-right: -5%;
+      margin-left: -5% ;
+    }
+
+    .employee-image {
+      width: 220px; /* Set the width and height as per your requirement */
+      height: 220px;
+      border-radius: 50%; /* To create a circular image */
+      object-fit: cover; /* To maintain aspect ratio */
+      border: 1px solid skyblue;
+      padding: 2% !important ;
+    }
+
+    .employee-name {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .employee-department {
+      color: white;
+    }
     </style>
   </head>
   <body style="font-family: 'spartan';">
@@ -515,6 +629,7 @@
             <a href="#about" class="nav__link">About</a>
             <a href="#faq" class="nav__link">FAQs</a>
             <a href="#initiatives" class="nav__link">Initiatives</a>
+            <a href="#testimonials" class="nav__link">Testimonials</a>
             <a href="#contact" class="nav__link">Contact</a>
             {% if json_registration and json_registration.fields.token %}
        <!-- Data exists in the context -->
@@ -527,6 +642,7 @@
     </div>
 <nav class="navbar_phone">
     <img style="width: 20%;" src="{% static 'img/sarc_logo_white.png' %}" >
+    <div class="register_phone"><a href="/mentorReg" {{json_registration.fields.token}} class="nav_link_phone">Register</a></div>
     <div class="navbar-toggle" onclick="toggleMenu()">
       <span></span>
       <span></span>
@@ -534,9 +650,10 @@
     </div>
     <div class="navbar-menu_phone" id="menu">
       <a style="text-decoration: none; color: black;" href="#about"><div class="navbar-item_phone">About</div></a>
-      <a style="text-decoration: none; color: black;" href="#contact"><div class="navbar-item_phone">Contact</div></a>
       <a style="text-decoration: none; color: black;" href="#faq"><div class="navbar-item_phone">FAQs</div></a>
-      <a style="text-decoration: none; color: black;" href="/mentorReg/{{json_registration.fields.token}}"><div class="navbar-item_phone">Register</div></a>
+      <div class="navbar-item_phone"><a href="#testimonials" class="nav__link_phone">Testimonials</a></div>
+      <a style="text-decoration: none; color: black;" href="#contact"><div class="navbar-item_phone">Contact</div></a>
+     
 
     </div>
   </nav>
@@ -584,18 +701,20 @@
         </div>
       </section>
      
-        <div class="faq">
+        <div class="asmp_faqs">
+            <h2>FAQs</h2>
+        <div class="faq" style="width: 90vw;">
         <section id="faq">
           <div class="question">Why should I become an ASMP mentor? 
-          <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon"></div>
+          <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon"></div>
           <div class="answer"><p>Bob Proctor rightly said that a mentor is someone who sees more talent and ability within you, than you see in yourself, and helps bring it out of you.<br></br>
           The primary objective of this program is to offer students a long-lasting source of inspiration and guidance—an exemplary figure who can serve as a beacon of hope during challenging times. The mentors have personally experienced and overcome the hardships and obstacles that students are currently facing or will encounter in their future journeys and are, thus, the best people to look up to.<br></br>
         Your invaluable wealth of knowledge, combined with both your triumphs and setbacks, is essential in assisting students with understanding and resolving various career-related matters.<br></br>
       Furthermore, this program presents an opportunity to actively engage with the curiosity and enthusiasm of young minds, fostering meaningful mentor-student relationships that bring both personal and professional fulfillment.<br></br></div>
 </div>
-<div class="faq">
+<div class="faq" style="width: 90vw;">
   <div class="question">How can I create an impact in my mentee’s life through ASMP?
-    <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon">
+    <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon">
   </div>
   <div class="answer">The program offers a platform for individual interaction with alumni from our institute, aiding in the resolution of diverse challenges faced by students during their campus journey and beyond.
     It presents a remarkable chance for students to enhance their interpersonal abilities and forge stronger connections with the esteemed alumni of IIT Bombay.
@@ -603,9 +722,9 @@
   </div>
   
 </div>
-<div class="faq">
+<div class="faq" style="width: 90vw;">
           <div class="question">What is Alum Buddy? 
-            <img src={% static 'img/down-arrow.png' %} alt="Down Arrow" class="arrow-icon">
+            <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon">
           </div>
           <div class="answer"><p>The Alum Buddy Program is a new addition to our ASMP (Alumni Student Mentorship Program), designed to foster support and guidance for students. 
             As an alum buddy, you have the opportunity to serve as a mentor to a student, providing valuable insights and assistance on various life matters. 
@@ -613,6 +732,8 @@
           </div>
         </div>
       </section>
+
+    </div>
 
     <div class="asmp_dist">
       <h2> DISTRIBUTION OF MENTORS </h2>
@@ -727,6 +848,23 @@
   
 </div>
 
+<section id="testimonials">
+<div class="testimonials">
+  <h2>TESTIMONIALS</h2>
+<div class="rectangle">
+    <h1>Sameer Desai</h1>
+    <h3>IIT Bombay’1992</h3>
+    <p>For nearly a decade, I've taken on the role of an ASMP mentor. What makes this experience truly remarkable is the opportunity it presents to connect with the vibrant minds of GenZ. The joy I derive from being a mentor stems from witnessing the transformative growth of my mentees. It's immensely fulfilling to play a part in their development, nurturing their talents, and observing the remarkable ways they shape their own futures.</p>
+  </div>
+
+  <div class="rectangle">
+    <h1>Rajat Chaturvedi</h1>
+    <h3>IIT Bombay’2018</h3>
+    <p>I was thrilled to receive the ASMP Program mail, eager to reconnect with my alma mater and give back to the institute that shaped my path. Fortunately, the experience has exceeded my expectations. Some mentorships have evolved into lasting friendships, extending beyond the program's end. After two successful years, I intend to continue mentoring for many more to come.</p>
+  </div>
+</div>
+</section>
+
 
  <section id="contact">
 <div class="team_members">
@@ -740,10 +878,10 @@
           <p class="member-details">SARC Core Team Member, ASMP</p>
           <p class="member-details">Contact Number - +91 9530364066</p>
           <div class="social-media">
-            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.linkedin.com/in/agrajah-bhobe-27a326236" target="_blank"><i
+            <a href="https://www.facebook.com/profile.php?id=100075120330142&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/aastha-sancheti" target="_blank"><i
                 class="fab fa-linkedin"></i></a>
-            <a href="https://instagram.com/agrajah_bhobe?igshid=MzRlODBiNWFlZA==" target="_blank"><i
+            <a href="https://instagram.com/aastha.sancheti_?igshid=MjAxZDBhZDhlNA==" target="_blank"><i
                 class="fab fa-instagram"></i></a>
           </div>
         </div>
@@ -753,15 +891,52 @@
           <p class="member-details">SARC Core Team Member, ASMP</p>
           <p class="member-details">Contact Number: +91 9619286724</p>
           <div class="social-media">
-            <a href="https://www.facebook.com/Garvcosmo" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.linkedin.com/in/garv-gupta-425596242?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BTO0FU%2FPlTbm8rvmUBaxwLg%3D%3D"
+            <a href="https://www.facebook.com/profile.php?id=100082167408275&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/priyaank-sheth-a5026522a"
               target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://instagram.com/garvcosmo?igshid=MzRlODBiNWFlZA==" target="_blank"><i
+            <a href="https://instagram.com/priyaanksheth?igshid=MjAxZDBhZDhlNA==" target="_blank"><i
                 class="fab fa-instagram"></i></a>
           </div>
         </div>
       </div>
 
+  </div>
+
+  <div class="employee-container">
+    <div class="employee-card">
+      <img src="{% static 'img/aastha_c.jpg' %}" alt="Employee 1" class="employee-image">
+      <div class="employee-name">Aastha Agrawal</div>
+      <div class="employee-department">+91 7389140324</div>
+    </div>
+
+    <div class="employee-card">
+      <img src="{% static 'img/nishit.jpg' %}" alt="Employee 2" class="employee-image">
+      <div class="employee-name">Nishit Moonat</div>
+      <div class="employee-department">+91 9399358126</div>
+    </div>
+
+    <div class="employee-card">
+      <img src="{% static 'img/tarun.jpg' %}" alt="Employee 3" class="employee-image">
+      <div class="employee-name">Tarun Kurapaty</div>
+      <div class="employee-department">+91 9676908924</div>
+    </div>
+
+    <div class="employee-card">
+      <img src="{% static 'img/anshika.jpg' %}" alt="Employee 4" class="employee-image">
+      <div class="employee-name">Anshika Mishra</div>
+      <div class="employee-department">+91 7987083011</div>
+    </div>
+
+    <div class="employee-card">
+      <img src={% static 'img/shreyas.jpg' %} alt="Employee 5" class="employee-image">
+      <div class="employee-name">Shreyas Sinha</div>
+      <div class="employee-department">+91 9119188492</div>
+    </div>
+    <div class="employee-card">
+      <img src={% static 'img/sahil.jpg' %} alt="Employee 5" class="employee-image">
+      <div class="employee-name">Sahil Choudhary</div>
+      <div class="employee-department">+91 9950809874</div>
+    </div>
   </div>
 </div>
 </section>

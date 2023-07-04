@@ -609,14 +609,14 @@ def send_confirmation_mail(
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Alumni Student Mentorship Program | Registration Confirmation </title>
+    <title> Alumni Student Mentorship Program | Registration Confirmed </title>
   </head>
   <body style="font-family: Arial, sans-serif; line-height: 1.5; background-color: rgba(168, 216, 240, 0.2); margin: 0; padding: 0;">
     <div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: rgba(168, 216, 240, 0.2); border-radius: 10px;">
-      <h1 style="font-size: 28px; color: #0A1172; text-align: center; margin-top: 0; margin-bottom: 20px;">Alumni Student Mentorship Program | Registration Confirmation</h1>
+      <h1 style="font-size: 28px; color: #0A1172; text-align: center; margin-top: 0; margin-bottom: 20px;">Alumni Student Mentorship Program | Registration Confirmed</h1>
       <p style="color: #000000;">Dear {userName},</p>
       <p style="color: #000000;">
-        Thank you for successfully registering for the Alumni Student Mentorship Program (ASMP). We are thrilled to have you as part of our mentoring community!
+        Thank you for successfully registering for the Alumni Student Mentorship Program (ASMP). We are thrilled to have you as a part of our mentoring community!
       </p>
       <p style="color: #000000;">
         Stay tuned for updates on upcoming mentoring sessions and events. We believe this program will create meaningful connections and contribute to the development of the next generation of leaders.
@@ -626,7 +626,7 @@ def send_confirmation_mail(
         
       </p>
       <p style="color: #0A1172;">
-       Aastha Sancheti: 1234498 <br/> Priyaank Sheth: 1234498
+       Aastha Sancheti: +91 8949726445 <br/> Priyaank Sheth: +91 9619286724
       </p>
       <p style="color: #000000;">We look forward to a successful mentorship journey with you!</p>
     </div>
