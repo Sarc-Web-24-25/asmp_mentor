@@ -544,6 +544,7 @@ def mentorReg(request, id=None):
             registration.dept_mentees = dept_mentees
             registration.buddy = buddy
 
+        registration.isNew = True
         registration.save()
         send_confirmation_mail(registration.email, registration.fullname)
         

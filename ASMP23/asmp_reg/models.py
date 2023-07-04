@@ -60,6 +60,8 @@ class Registration(models.Model):
     buddy = models.CharField(
         max_length=255, default='Your Default Value'
     )
+    
+    isNew = models.BooleanField(default=False)
 
     def __str__(self):
         return self.fullname
