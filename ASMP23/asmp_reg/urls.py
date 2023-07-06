@@ -7,7 +7,7 @@ urlpatterns = [
     path('Mentor-<str:id>', views.old_mentor_home, name='index'),
     # path('registration/', views.register),
     # path('registration/regcom/', views.menteereg),
-    path('2023_k_webCTM_achhe_hain', views.export, name="export"),
+    # path('2023_k_webCTM_achhe_hain', views.export, name="export"),
     # path('upload/', views.simple_upload)
     path('mentorReg/', views.mentorReg, name='mentorReg'),
     path('mentorReg/<str:id>/', views.mentorReg, name='mentorReg'),
