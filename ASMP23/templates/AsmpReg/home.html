@@ -642,7 +642,7 @@
     </div>
 <nav class="navbar_phone">
     <img style="width: 20%;" src="{% static 'img/sarc_logo_white.png' %}" >
-    <div class="register_phone"><a href="/mentorReg" {{json_registration.fields.token}} class="nav_link_phone">Register</a></div>
+    <div class="register_phone"><a href="/mentorReg/{{json_registration.fields.token}}" class="nav_link_phone">Register</a></div>
     <div class="navbar-toggle" onclick="toggleMenu()">
       <span></span>
       <span></span>
