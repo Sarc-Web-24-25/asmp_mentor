@@ -594,7 +594,6 @@
           text-align: center;
         }
       }
-    
 
       .employee-container {
         display: flex;
@@ -609,7 +608,7 @@
     }
 
     .employee-image {
-      width: 220px; /* Set the width and height as per your requirement */
+      width: 220px;
       height: 220px;
       border-radius: 50%; /* To create a circular image */
       object-fit: cover; /* To maintain aspect ratio */
@@ -662,7 +661,222 @@
         text-align: center;
       }
     }
+
+    /* New Accordion FAQ Section */
+    .accordion-wrapper {
+      max-width: 90%;
+      min-width: 90%;
+      width: 90%;
+      margin: 10px auto;
+    }
+
+    .accordion-outer {
+      margin-bottom: 20px;
+      border-radius: 10px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .accordion-heading {
+      background-color: #0A1172;
+      border-radius: 10px 10px 0 0;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: bold;
+      position: relative;
+      width: 100%;
+      font-size: 20px;
+      color: white;
+    }
+
+    .accordion-content {
+      padding: 15px;
+      background-color: #1a1a1a;
+      display: none; /* Start hidden - will be shown by JS */
+      font-size: 18px;
+      border-radius: 0 0 10px 10px;
+      color: #a8d8f0;
+    }
+
+    .accordion-heading:after {
+      content: "+";
+      position: absolute;
+      right: 15px;
+      color: white;
+    }
+
+    .accordion-outer.is-open .accordion-heading:after {
+      content: "-";
+    }
+
+    .accordion-wrapper h2 {
+      font-size: 40px;
+      color: #a8d8f0;
+      text-align: center;
+      margin-bottom: 5%;
+    }
+
+    /* Hover accordion style */
+    .accordion-wrapper.on-hover .accordion-heading {
+      background-color: #e8f5e9;
+    }
+
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300,400);
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+
+    figure.snip1390 {
+      font-family: 'Roboto', Arial, sans-serif;
+      position: relative;
+      overflow: hidden;
+      margin: 10px;
+      min-width: 280px;
+      max-width: 350px;
+      width: 100%;
+      color: #000000;
+      text-align: center;
+      font-size: 16px;
+      background-color: #2C3447;
+      padding: 25px;
+      background-image: linear-gradient(-25deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    figure.snip1390 *,
+    figure.snip1390 *:before,
+    figure.snip1390 *:after {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all 0.35s ease;
+      transition: all 0.35s ease;
+    }
+
+    figure.snip1390 figcaption {
+      width: 100%;
+    }
+
+    figure.snip1390 h2,
+    figure.snip1390 h4,
+    figure.snip1390 blockquote {
+      margin: 0;
+    }
+
+    figure.snip1390 h2,
+    figure.snip1390 h4 {
+      font-weight: 300;
+    }
+
+    figure.snip1390 h2 {
+      color: #ffffff;
+    }
+
+    figure.snip1390 h4 {
+      color: #a6a6a6;
+    }
+
+    figure.snip1390 blockquote {
+      font-size: 1em;
+      padding: 35px 20px 30px 60px;
+      margin-top: 20px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: inset -1.4px -1.4px 2px rgba(0, 0, 0, 0.3);
+      text-align: left;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    figure.snip1390 blockquote:before {
+      font-family: 'FontAwesome';
+      content: "\201C";
+      position: absolute;
+      font-size: 100px;
+      opacity: 0.25;
+      font-style: normal;
+      top: 0px;
+      left: 10px;
+    }
+
+    figure.snip1390 .profile {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.4);
+      margin-bottom: 10px;
+      border: solid 5px #A6A57A;
+      object-fit: cover;
+    }
+
+    #testimonials-cards {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    #testimonials-cards > div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    #testimonials-cards h2 {
+      font-size: 40px;
+      color: #a8d8f0;
+      text-align: center;
+      margin-bottom: 5%;
+    }
   </style>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Field', 'Percentage'],
+          ['Finance', 10.9],
+          ['IT', 8.7],
+          ['Consulting', 14.3],
+          ['Research', 14],
+          ['PM', 7.5],
+          ['Analytics', 6.8],
+          ['Core', 16.2],
+          ['Others', 6.8],
+          ['Management', 14.7]
+        ]);
+
+        var options = {
+          title: '',
+          legend: 'none',
+          is3D: true,
+          pieSliceText: 'label',
+          pieSliceTextStyle: {
+            color: 'white',
+            fontSize: 14
+          },
+          backgroundColor: 'transparent',
+          colors: ['#0A1172', '#1a1a1a', '#a8d8f0', '#87ceeb', '#02055A', '#B0DBF1', '#02198B', '#000137', '#007FFF'],
+          tooltip: { 
+            trigger: 'focus',
+            text: 'percentage'
+          },
+          chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
+          enableInteractivity: true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+
+        // Make the chart responsive
+        window.addEventListener('resize', function() {
+          chart.draw(data, options);
+        });
+      }
+    </script>
 </head>
 
 <body style="font-family: 'spartan';">
@@ -818,54 +1032,51 @@
         </div>
       </div>
     </section>
-      
-     
-    <div class="asmp_faqs">
+
+    <!-- FAQ Section -->
+    <div class="accordion-wrapper set1" id="faqs">
       <h2>FAQs</h2>
-      <div class="faq" style="width: 90vw;">
-        <section id="faq">
-          <div class="question">Why should I become an ASMP mentor? 
-            <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon">
-          </div>
-          <div class="answer">
-            <p>
-              Bob Proctor rightly said that a mentor is someone who sees more talent and ability within you, than you see in yourself, and helps bring it out of you.<br></br>
-              The primary objective of this program is to offer students a long-lasting source of inspiration and guidance—an exemplary figure who can serve as a beacon of hope during challenging times. The mentors have personally experienced and overcome the hardships and obstacles that students are currently facing or will encounter in their future journeys and are, thus, the best people to look up to.<br></br>
-              Your invaluable wealth of knowledge, combined with both your triumphs and setbacks, is essential in assisting students with understanding and resolving various career-related matters.<br></br>
-              Furthermore, this program presents an opportunity to actively engage with the curiosity and enthusiasm of young minds, fostering meaningful mentor-student relationships that bring both personal and professional fulfillment.<br></br>
-            </p>
-          </div>
-        </section>
-      </div>
-
-      <div class="faq" style="width: 90vw;">
-        <div class="question">How can I create an impact in my mentee’s life through ASMP?
-          <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon">
-        </div>
-        <div class="answer">
-          The program offers a platform for individual interaction with alumni from our institute, aiding in the resolution of diverse challenges faced by students during their campus journey and beyond.
-          It presents a remarkable chance for students to enhance their interpersonal abilities and forge stronger connections with the esteemed alumni of IIT Bombay.
-          Through this opportunity, mentees can gain valuable insights into their mentors' academic experiences at the institute, thus enriching their own educational journey. 
+      <div class="accordion-outer is-open">
+        <div class="accordion-heading">Why should I become an ASMP mentor?</div>
+        <div class="accordion-content" style="display: block;">
+          <p>
+            Bob Proctor rightly said that a mentor is someone who sees more talent and ability within you, than you see in yourself, and helps bring it out of you.<br></br>
+            The primary objective of this program is to offer students a long-lasting source of inspiration and guidance—an exemplary figure who can serve as a beacon of hope during challenging times. The mentors have personally experienced and overcome the hardships and obstacles that students are currently facing or will encounter in their future journeys and are, thus, the best people to look up to.<br></br>
+            Your invaluable wealth of knowledge, combined with both your triumphs and setbacks, is essential in assisting students with understanding and resolving various career-related matters.<br></br>
+            Furthermore, this program presents an opportunity to actively engage with the curiosity and enthusiasm of young minds, fostering meaningful mentor-student relationships that bring both personal and professional fulfillment.<br></br>
+          </p>
         </div>
       </div>
-
-      <div class="faq" style="width: 90vw;">
-        <div class="question">What are the responsibilities as an ASMP Mentor? 
-          <img src={% static 'img/arrow.png' %} alt="Down Arrow" class="arrow-icon">
+      <div class="accordion-outer">
+        <div class="accordion-heading">How can I create an impact in my mentee's life through ASMP?</div>
+        <div class="accordion-content">
+          <p>
+            The program offers a platform for individual interaction with alumni from our institute, aiding in the resolution of diverse challenges faced by students during their campus journey and beyond.
+            It presents a remarkable chance for students to enhance their interpersonal abilities and forge stronger connections with the esteemed alumni of IIT Bombay.
+            Through this opportunity, mentees can gain valuable insights into their mentors' academic experiences at the institute, thus enriching their own educational journey.
+          </p>
         </div>
-        <div class="answer">
-          <li>Establish connection with the mentee, the mentee's explicit goals and objectives for the relationship</li>
-          <li>Take the initiative in the relationship but allows the mentee to take responsibility for their growth, development, and career planning</li>
-          <li>Provide encouragement and assists the mentee in identifying professional development activities</li>
-          <li>Recognize and work through conflicts in caring ways, invites discussion on differences with the mentee.</li>
+      </div>
+      <div class="accordion-outer">
+        <div class="accordion-heading">What are the responsibilities as an ASMP Mentor?</div>
+        <div class="accordion-content">
+          <p>
+            <li>Establish connection with the mentee, the mentee's explicit goals and objectives for the relationship</li>
+            <li>Take the initiative in the relationship but allows the mentee to take responsibility for their growth, development, and career planning</li>
+            <li>Provide encouragement and assists the mentee in identifying professional development activities</li>
+            <li>Recognize and work through conflicts in caring ways, invites discussion on differences with the mentee.</li>
+          </p>
         </div>
       </div>
     </div>
 
     <div class="asmp_dist">
       <h2> DISTRIBUTION OF MENTORS </h2>
-      <img src="{% static 'img/asmp_design.jpg' %}" style="padding: 0.2rem; width: 40vw; height: auto; border: 5px solid #0a1172">
+      {% comment %} <img src="{% static 'img/asmp_design.jpg' %}" style="padding: 0.2rem; width: 40vw; height: auto; border: 5px solid #0a1172"> {% endcomment %}
+      <div id="piechart" style="width: 100%; height: 500px; max-width: 900px; margin: 0 auto;"></div>
     </div>
+
+    
 
     <div id="initiatives" class="structure">
       <h2> STRUCTURES AND INITIATIVES BY ASMP </h2>
@@ -910,7 +1121,7 @@
         <div class="asmp_box">
           SARC provides an opportunity to all third year students to be a part of mock internship interview program - Nail The Prep, which is planned to engage students in mock interviews with our highly esteemed alumni.
           NTP generally happens in July, wherein our alumni with the experience in different fields like Finance, consult, PM, IT, software etc. take mock interviews of students who are targeting internships.
-          NTP also involves a QnA session named as Ask The Alum (ATA) to clarify students’ doubts about internship
+          NTP also involves a QnA session named as Ask The Alum (ATA) to clarify students' doubts about internship
           season.
         </div>
       </div>
@@ -968,7 +1179,7 @@
       <div class="asmp_box_phone">
         SARC provides an opportunity to all third year students to be a part of mock internship interview program - Nail The Prep, which is planned to engage students in mock interviews with our highly esteemed alumni. 
         NTP generally happens in July, wherein our alumni with the experience in different fields like Finance, consult, PM, IT, software etc. take mock interviews of students who are targeting internships. 
-        NTP also involves a QnA session named as Ask The Alum (ATA) to clarify students’ doubts about internship season.
+        NTP also involves a QnA session named as Ask The Alum (ATA) to clarify students' doubts about internship season.
       </div>
     </div>
 
@@ -981,23 +1192,56 @@
       </div>
     </div>
 
-    <section id="testimonials">
+    {% comment %} <section id="testimonials">
       <div class="testimonials">
         <h2>TESTIMONIALS</h2>
         <div class="rectangle">
           <h1>Sameer Desai</h1>
-          <h3>IIT Bombay’1992</h3>
+          <h3>IIT Bombay'1992</h3>
           <p>For nearly a decade, I've taken on the role of an ASMP mentor. What makes this experience truly remarkable is the opportunity it presents to connect with the vibrant minds of GenZ. The joy I derive from being a mentor stems from witnessing the transformative growth of my mentees. It's immensely fulfilling to play a part in their development, nurturing their talents, and observing the remarkable ways they shape their own futures.</p>
         </div>
 
         <div class="rectangle">
           <h1>Rajat Chaturvedi</h1>
-          <h3>IIT Bombay’2018</h3>
+          <h3>IIT Bombay'2018</h3>
           <p>I was thrilled to receive the ASMP Program mail, eager to reconnect with my alma mater and give back to the institute that shaped my path. Fortunately, the experience has exceeded my expectations. Some mentorships have evolved into lasting friendships, extending beyond the program's end. After two successful years, I intend to continue mentoring for many more to come.</p>
         </div>
       </div>
-    </section>
+    </section> {% endcomment %}
 
+    <!-- New Testimonials Section with Cards -->
+    <section id="testimonials">
+      <h2>TESTIMONIALS</h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+        <figure class="snip1390">
+          <img src="{% static 'img/testimonial1.jpg' %}" alt="Sameer Desai" class="profile" />
+          <figcaption>
+            <h2>Sameer Desai</h2>
+            <h4>IIT Bombay'1992</h4>
+            <blockquote>For nearly a decade, I've taken on the role of an ASMP mentor. What makes this experience truly remarkable is the opportunity it presents to connect with the vibrant minds of GenZ. The joy I derive from being a mentor stems from witnessing the transformative growth of my mentees. It's immensely fulfilling to play a part in their development, nurturing their talents, and observing the remarkable ways they shape their own futures.</blockquote>
+          </figcaption>
+        </figure>
+
+        <figure class="snip1390">
+          <img src="{% static 'img/testimonial2.jpg' %}" alt="Rajat Chaturvedi" class="profile" />
+          <figcaption>
+            <h2>Rajat Chaturvedi</h2>
+            <h4>IIT Bombay'2018</h4>
+            <blockquote>I was thrilled to receive the ASMP Program mail, eager to reconnect with my alma mater and give back to the institute that shaped my path. Fortunately, the experience has exceeded my expectations. Some mentorships have evolved into lasting friendships, extending beyond the program's end. After two successful years, I intend to continue mentoring for many more to come.</blockquote>
+          </figcaption>
+        </figure>
+
+        <figure class="snip1390">
+          <img src="{% static 'img/testimonial3.jpg' %}" alt="Vishram Bapat" class="profile" />
+          <figcaption>
+            <h2>Vishram Bapat</h2>
+            <h4>IIT Bombay'1976</h4>
+            <blockquote>I have been part of the ASMP program for over 3 years and have enjoyed every moment of this initiative.
+              It is true that mentoring is a two way street. There is a lot that I also learn from these motivated youth. My objective is to elevate our association from mentee to friend, ideally best friend. This way the mentee becomes comfortable to discuss any issue, even personal, which comes in way of work. I am happy that we have achieved this target in most cases.</blockquote>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
 
     <section id="contact">
       <div class="team_members">
@@ -1005,28 +1249,27 @@
         <div class="team-members" style="margin-bottom: 5%;">
           <div class="member">
             <img src="{% static 'img/anshika.png' %}" alt="Team Member 1" class="member-photo">
-            <h3 class="member-name">Anshika Mishra</h3>
+            <h3 class="member-name">Aadit Sule </h3>
             <p class="member-details">SARC Core Team Member, ASMP</p>
-            <p class="member-details">Contact Number - +91 7987083011</p>
-            <p class="member-details">Email: anshika@sarciitb.org</p>
+            <p class="member-details">Contact Number - +91 8459539918</p>
+            <p class="member-details">Email: aadit.sarc@gmail.com</p>
             <div class="social-media">
-              <a href="https://www.facebook.com/profile.php?id=100093651197478&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
-              <a href="http://www.linkedin.com/in/anshika-mishra-952715267" target="_blank"><i class="fab fa-linkedin"></i></a>
-              <a href="https://www.instagram.com/anshika.mishra/" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/profile.php?id=61560310545425&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.linkedin.com/in/aadit-sule?" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/aaadit_s?igsh=bWZzYTN1MTBmOXZz" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
           </div>
 
           <div class="member">
             <img src="{% static 'img/nishit.png' %}" alt="Team Member 2" class="member-photo">
-            <h3 class="member-name">Nishit Moonat</h3>
+            <h3 class="member-name">Aastha Maliwal</h3>
             <p class="member-details">SARC Core Team Member, ASMP</p>
-            <p class="member-details">Contact Number: +91 9399358126</p>
-            <p class="member-details">Email: nishit@sarciitb.org</p>
+            <p class="member-details">Contact Number: +91 9403521022</p>
+            <p class="member-details">Email: aastham.sarc@gmail.com</p>
             <div class="social-media">
-              <a href="https://www.facebook.com/profile.php?id=100082167408275&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
-              <a href="https://www.linkedin.com/in/priyaank-sheth-a5026522a"
-              target="_blank"><i class="fab fa-linkedin"></i></a>
-              <a href="https://instagram.com/priyaanksheth?igshid=MjAxZDBhZDhlNA==" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/profile.php?id=61560205817967" target="_blank"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.linkedin.com/in/aastha-maliwal-2ba2b0287/" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/aasthamaliwal/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
           </div>
         </div>
@@ -1111,6 +1354,39 @@
           var answer = this.nextElementSibling;
           answer.classList.toggle('expanded');
         });
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      // For the click-based accordions, the first one stays open
+      $(".accordion-wrapper:not(.on-hover)").each(function () {
+        $(this).find(".accordion-outer:first").addClass("is-open");
+        $(this).find(".accordion-content:first").show();
+      });
+
+      // Click event for accordions without "on-hover" class
+      $(".accordion-wrapper:not(.on-hover) .accordion-heading").click(function () {
+        var $accordionContent = $(this).next(".accordion-content");
+        var $accordionOuter = $(this).closest(".accordion-outer");
+        var $parentWrapper = $(this).closest(".accordion-wrapper");
+
+        // Slide up all other accordions IN THIS WRAPPER and remove the 'is-open' class
+        $parentWrapper.find(".accordion-content").not($accordionContent).slideUp();
+        $parentWrapper
+          .find(".accordion-outer")
+          .not($accordionOuter)
+          .removeClass("is-open");
+
+        // Toggle the clicked accordion
+        if ($accordionContent.is(":visible")) {
+          $accordionContent.slideUp();
+          $accordionOuter.removeClass("is-open");
+        } else {
+          $accordionContent.slideDown();
+          $accordionOuter.addClass("is-open");
+        }
       });
     });
   </script>
