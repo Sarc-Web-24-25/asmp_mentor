@@ -20,6 +20,8 @@ HOSTEL_CHOICES = [
 ]
 
 YEAR_CHOICES = [
+    ('2025', '2025'),
+    ('2024', '2024'),
     ('2023', '2023'),
     ('2022', '2022'),
     ('2021', '2021'),
@@ -104,6 +106,7 @@ BRANCH_CHOICES = [
     ('che', 'Chemical Engineering'),
     ('ieor', 'Industrial Engineering and Operations Research'),
     ('metallurgy', 'Metallurgical Engineering and Material Science'),
+    ('eco', 'Economics'),
     ('engphy', 'Engineering Physics'),
     ('envsci', 'Environmental Science & Engineering'),
     ('energy', 'Energy Science & Engineering'),
@@ -338,32 +341,27 @@ MENTEES = [
     ('4', '4'),
 ]
 
-PREFERENCES = [
-    ('no_preference', 'No preference'),
-    ('final_year_undergrad', 'Final year undergraduate students'),
-    ('other_undergrad', 'Other undergraduate students'),
-    ('mtech_students', 'M.Tech students'),
-    ('phd_students', 'PhD students'),
+MENTEE_PREFERENCE_CHOICES = [
+    ('no_preference', 'No Preference'),
+    ('final_year_undergrad', 'Final Year Undergrad'),
+    ('other_undergrad', 'Other Undergrad'),
+    ('mtech_students', 'M.Tech Students'),
+    ('phd_students', 'PhD Students'),
 ]
-
-
 
 DEPT_MENTEES_FIELDS = [
     ('No_preference_as_such', 'No preference as such'),
     ('Aerospace_Engineering', 'Aerospace Engineering'),
     ('Biosciences_&Bioengineering', 'Biosciences & Bioengineering'),
     ('Centre_for_Policy_Studies-CPS', 'Centre for Policy Studies - CPS'),
-    ('Centre_for_Urban_Science&Engineering-C-USE',
-        'Centre for Urban Science & Engineering - C-USE'),
-    ('Centre_of_Studies_in_Resources_Engineering-CSRE',
-        'Centre of Studies in Resources Engineering - CSRE'),
+    ('Centre_for_Urban_Science&Engineering-C-USE', 'Centre for Urban Science & Engineering - C-USE'),
+    ('Centre_of_Studies_in_Resources_Engineering-CSRE', 'Centre of Studies in Resources Engineering - CSRE'),
     ('Chemical_Engineering', 'Chemical Engineering'),
     ('Chemistry', 'Chemistry'),
     ('Civil_Engineering', 'Civil Engineering'),
     ('Climate_Studies', 'Climate Studies'),
     ('Computer_Science&Engineering', 'Computer Science & Engineering'),
-    ('Desai_Sethi_Centre_for_Entrepreneurship-DSCE',
-        'Desai Sethi Centre for Entrepreneurship - DSCE'),
+    ('Desai_Sethi_Centre_for_Entrepreneurship-DSCE', 'Desai Sethi Centre for Entrepreneurship - DSCE'),
     ('Earth_Sciences', 'Earth Sciences'),
     ('Educational_Technology', 'Educational Technology'),
     ('Electrical_Engineering', 'Electrical Engineering'),
@@ -373,11 +371,9 @@ DEPT_MENTEES_FIELDS = [
     ('Industrial_Design_Centre', 'Industrial Design Centre'),
     ('Mathematics', 'Mathematics'),
     ('Mechanical_Engineering', 'Mechanical Engineering'),
-    ('Metallurgical_Engineering&_Materials_Science',
-        'Metallurgical Engineering & Materials Science'),
+    ('Metallurgical_Engineering&_Materials_Science', 'Metallurgical Engineering & Materials Science'),
     ('Physics', 'Physics'),
-    ('Shailesh_J.Mehta_School_of_Management',
-        'Shailesh J. Mehta School of Management'),
+    ('Shailesh_J.Mehta_School_of_Management', 'Shailesh J. Mehta School of Management'),
     ('Systems&_Control_Engineering', 'Systems & Control Engineering'),
     ('CESE', 'CESE'),
     ('Other', 'Other')

@@ -12,5 +12,5 @@ urlpatterns = [
     path('mentorReg/', views.mentorReg, name='mentorReg'),
     path('mentorReg/<str:id>/', views.mentorReg, name='mentorReg'),
     # path('api/thanks', views.testapi, name="testapio"),
-    path('phonehome', views.phonehome, name='phonehome'),
+    # path('phonehome', views.phonehome, name='phonehome'),
 ]

@@ -1103,7 +1103,7 @@
 
                 
 
-              <div class='form-label'>Preferred Department for Mentees</div>
+              {% comment %} <div class='form-label'>Preferred Department for Mentees</div>
 <div>
     <select name="dept_mentees" id="dept_mentees" multiple required>
         <option value="" disabled selected>--Select--</option>
@@ -1122,7 +1122,7 @@
 
           <div class="input_field">
             <input id="other_dept_mentees" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; display: none;" name="other_dept_," placeholder="In case you have chosen other in department"/>
-          </div>
+          </div> {% endcomment %}
               {% comment %} <div class='form-label'>Who do you want to mentor?</div>
 
               <div class="options">
@@ -1134,7 +1134,7 @@
     <br>
   {% endfor %} {% endcomment %}
 </div> 
-<div class='form-label' >Whom do you wish to mentor?</div>
+{% comment %} <div class='form-label' >Whom do you wish to mentor?</div>
 <div class="options">
   <label>
     {% if json_registration and json_registration.fields and json_registration.fields.preference_no_preference %}
@@ -1197,9 +1197,9 @@
     PhD students
   </label>
   <br>
-</div>
+</div> {% endcomment %}
 
-<script>
+{% comment %} <script>
   var checkboxes = document.querySelectorAll('input[type="checkbox"]');
   var submitButton = document.querySelector('input[type="submit"]');
   var form = document.querySelector('form');
@@ -1214,7 +1214,7 @@
       alert("Please select at least one option for the question 'Whom do you wish to mentor?'.");
     }
   });
-</script>
+</script> {% endcomment %}
 
   {% comment %} <div class='form-label'>Do you want to become an alum buddy for 1 extra fresher besides your given number of mentees?</div>
   <div class="options">

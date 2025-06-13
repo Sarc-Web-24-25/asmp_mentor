@@ -313,6 +313,7 @@
 # views.py
 import html
 import json
+import os
 from django.core import serializers
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -321,111 +322,111 @@ from .models import Registration
 from rest_framework.decorators import api_view
 from . import options
 import csv
-
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 import smtplib
 from django.core.exceptions import ValidationError
 
-
 def export(request):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="mentors_asmp23.csv"'
+    response['Content-Disposition'] = 'attachment; filename="ASMP_Mentors_2025.csv"'
 
     writer = csv.writer(response)
     writer.writerow([
+        'Timestamp',
         'Personalized Link', 
         'Full Name',
+        'New Mentor?',
         'Department',
         'Other department',
         'Degree',
         'Other Degree',
         'Hostel',
-        'Year',
+        'Graduating Year',
         'Contact',
         'Email',
-        'Linkedin Profile',
+        'LinkedIn Profile',
         'City',
         'Country',
         'Designation',
         'Company Name',
         'Work Profile',
-        'Pref',
-        'Other field'
-        'No Preference',
-        'Final Year Undergrad',
-        'Other Undergrad',
-        'M.Tech Students',
-        'PhD Students',
-        'Mentees',
+        'Preference',
+        'Other field',
+        'Mentee Preference',
+        'No. of Mentees',
         'Dept of Mentees',
-        'Availability',
         'Buddy'
     ])
 
-    registrations = Registration.objects.filter(isNew=True);
+    registrations = Registration.objects.all()
+    country_dict = dict(options.COUNTRY_CHOICES)
+    hostel_dict = dict(options.HOSTEL_CHOICES)
+    department_dict = dict(options.BRANCH_CHOICES)
 
     for registration in registrations:
+        
         writer.writerow([
+            registration.registration_timestamp,
             "https://asmp.sarc-iitb.org/" + registration.token,
             registration.fullname,
-            registration.department,
+            registration.isNew,
+            department_dict.get(registration.department, registration.department),
             registration.department_other,
             registration.degree,
             registration.degree_other,
-            registration.hostel,
+            hostel_dict.get(registration.hostel, registration.hostel),
             registration.year,
             registration.contact,
             registration.email,
             registration.linkedin,
             registration.city,
-            registration.country,
+            country_dict.get(registration.country, registration.country),
             registration.designation,
             registration.company_name,
             registration.work_profile,
             registration.pref,
             registration.field_other,
-            registration.preference_no_preference,
-            registration.preference_final_year_undergrad,
-            registration.preference_other_undergrad,
-            registration.preference_mtech_students,
-            registration.preference_phd_students,
-            registration.dept_mentees,
+            registration.get_mentee_preference_display(),
             registration.mentees,
-            registration.buddy,
+            registration.dept_mentees,
+            registration.buddy
         ])
-
     return response
-
 
 def new_mentor_home(request):
     return render(request, 'AsmpReg/home.html')
 
-
+# Takes an id parameter from the URL
 def old_mentor_home(request, id):
     try:
+        # Look up the mentor by their token
         registration = Registration.objects.get(token=f'Mentor-{id}')
+        
+        # Convert the registration object to JSON
         serialized_registration = serializers.serialize('json', [registration])
         json_registration = serialized_registration[1:-1]
         registration_dict = json.loads(json_registration)
+        
+        # Pass the registration data to the template
         context = {'json_registration': registration_dict}
         return render(request, 'AsmpReg/home.html', context)
 
     except Registration.DoesNotExist:
+        # If mentor not found, render empty page
         return render(request, 'AsmpReg/home.html', {})
 
     # return render(request, 'AsmpReg/home.html', context)
 
-
 def phonehome(request):
     return render(request, 'AsmpReg/phonehome.html')
 
-
 def mentorReg(request, id=None):
-
     if request.method == 'POST':
+        # Check if this is a new registration or an update
         if (not Registration.objects.filter(token=id).exists()):
+            # NEW REGISTRATION
             fullname = request.POST.get('fullname', 'NA')
             department = request.POST.get('department', 'NA')
             department_other = request.POST.get('other_department', 'NA')
@@ -441,22 +442,14 @@ def mentorReg(request, id=None):
             designation = request.POST.get('designation', 'NA')
             company_name = request.POST.get('company_name', 'NA')
             work_profile = request.POST.get('work_profile', 'NA')
-            pref = request.POST.get('pref')
+            pref = request.POST.get('pref', 'NA')
             field_other = request.POST.get('other_field', 'NA')
-            preference_no_preference = bool(
-                request.POST.get('preference_no_preference', False))
-            preference_final_year_undergrad = bool(
-                request.POST.get('preference_final_year_undergrad', False))
-            preference_other_undergrad = bool(
-                request.POST.get('preference_other_undergrad', False))
-            preference_mtech_students = bool(
-                request.POST.get('preference_mtech_students', False))
-            preference_phd_students = bool(
-                request.POST.get('preference_phd_students', False))
+            mentee_preference = request.POST.get('mentee_preference', 'no_preference')
             mentees = request.POST.get('mentees', 'NA')
             dept_mentees = request.POST.getlist('dept_mentees', 'NA')
             buddy = request.POST.get('buddy', 'NA')
-
+            
+            # Create new registration
             registration = Registration.objects.create(
                 fullname=fullname,
                 department=department,
@@ -473,11 +466,7 @@ def mentorReg(request, id=None):
                 designation=designation,
                 company_name=company_name,
                 work_profile=work_profile,
-                preference_no_preference=preference_no_preference,
-                preference_final_year_undergrad=preference_final_year_undergrad,
-                preference_other_undergrad=preference_other_undergrad,
-                preference_mtech_students=preference_mtech_students,
-                preference_phd_students=preference_phd_students,
+                mentee_preference=mentee_preference,
                 pref=pref,
                 field_other=field_other,
                 mentees=mentees,
@@ -485,6 +474,7 @@ def mentorReg(request, id=None):
                 buddy=buddy
             )
         else:
+            # UPDATE EXISTING REGISTRATION. First get all information
             fullname = request.POST.get('fullname', 'NA')
             department = request.POST.get('department', 'NA')
             department_other = request.POST.get('other_department', 'NA')
@@ -500,24 +490,14 @@ def mentorReg(request, id=None):
             designation = request.POST.get('designation', 'NA')
             company_name = request.POST.get('company_name', 'NA')
             work_profile = request.POST.get('work_profile', 'NA')
-            pref = request.POST.get('pref')
+            pref = request.POST.get('pref', 'NA')
             field_other = request.POST.get('other_field', 'NA')
-            preference_no_preference = bool(
-                request.POST.get('preference_no_preference', False))
-            preference_final_year_undergrad = bool(
-                request.POST.get('preference_final_year_undergrad', False))
-            preference_other_undergrad = bool(
-                request.POST.get('preference_other_undergrad', False))
-            preference_mtech_students = bool(
-                request.POST.get('preference_mtech_students', False))
-            preference_phd_students = bool(
-                request.POST.get('preference_phd_students', False))
+            mentee_preference = request.POST.get('mentee_preference', 'no_preference')
             mentees = request.POST.get('mentees', 'NA')
             dept_mentees = request.POST.getlist('dept_mentees', 'NA')
             buddy = request.POST.get('buddy', 'NA')
 
             registration = Registration.objects.get(token=id)
-
             registration.fullname = fullname
             registration.department = department
             # registration.department_other=department_other,
@@ -533,18 +513,14 @@ def mentorReg(request, id=None):
             registration.designation = designation
             registration.company_name = company_name
             registration.work_profile = work_profile
-            registration.preference_no_preference = preference_no_preference
-            registration.preference_final_year_undergrad = preference_final_year_undergrad
-            registration.preference_other_undergrad = preference_other_undergrad
-            registration.preference_mtech_students = preference_mtech_students
-            registration.preference_phd_students = preference_phd_students
+            registration.mentee_preference = mentee_preference
             registration.pref = pref
             registration.field_other = field_other
             registration.mentees = mentees
             registration.dept_mentees = dept_mentees
             registration.buddy = buddy
 
-        registration.isNew = True
+        registration.isNew = True # Mark as new/update
         registration.save()
         send_confirmation_mail(registration.email, registration.fullname)
         
@@ -555,7 +531,6 @@ def mentorReg(request, id=None):
         context = {
             'json_registration': registration_dict if id is not None else {},
         }
-        
 
         return render(request, 'AsmpReg/thank.html', context)
 
@@ -572,10 +547,8 @@ def mentorReg(request, id=None):
 
     return render(request, 'AsmpReg/form.html', context)
 
-
 def thank(request):
     return render(request, 'AsmpReg/thank.html')
-
 
 @api_view(['POST'])
 def testapi(request):
@@ -585,17 +558,15 @@ def testapi(request):
     context = {'alumni_id': alumni_id, 'duration': duration}
     return render(request, 'thank.html', context)
 
-
 leftUsers = []
 
-
 def send_confirmation_mail(
-    emailid="akashbanger2@gmail.com",
-    to_person_name="User",
+    emailid="arush.sarc@gmail.com",    # Default email if none provided
+    to_person_name="User",             # Default name if none provided
 ):
-    strFrom = "sarc@iitb.ac.in"
-    strTo = emailid
-    userName = to_person_name
+    strFrom = "sarc@iitb.ac.in"        # Sender email
+    strTo = emailid                    # Recipient email
+    userName = to_person_name          # Recipient name
     # subject = mail_subject
     # text_content = text_content
     msgRoot = MIMEMultipart("related")
@@ -605,6 +576,7 @@ def send_confirmation_mail(
     msgRoot.preamble = "This is a multi-part message in MIME format."
     msgAlternative = MIMEMultipart("alternative")
     msgRoot.attach(msgAlternative)
+
     msghtml = f'''
 <!DOCTYPE html>
 <html>
@@ -623,23 +595,19 @@ def send_confirmation_mail(
       </p>
       <p style="color: #000000;">
         If you have any questions, You can contact:
-        
       </p>
       <p style="color: #0A1172;">
-       Aastha Sancheti: +91 8949726445 <br/> Priyaank Sheth: +91 9619286724
+       Aadit Sule: +91 8459539918 <br/> Aastha Maliwal: +91 9403521022
       </p>
       <p style="color: #000000;">We look forward to a successful mentorship journey with you!</p>
     </div>
   </body>
 </html>
-
 '''
-    msgText = MIMEText(
-        msghtml,
-        "html",
-    )
-
+    # Attach HTML Content
+    msgText = MIMEText(msghtml, "html")
     msgAlternative.attach(msgText)
+
     smtp = smtplib.SMTP("smtp-auth.iitb.ac.in", 587)
     smtp.starttls()
 
@@ -649,17 +617,11 @@ def send_confirmation_mail(
         smtp.quit()
         return response
     except Exception as e:
-        print(e, "this is error while login smtp or sending")
+        print(e, "This is error while login smtp or sending")
         leftUsers.append(emailid)
         pass
 
-
-import os
-
-
 leftUsers= []
-
-
 
 def add_mentor_data():
     file_path = os.path.join(os.getcwd(), 'LastYearData', 'mentorData.csv')
@@ -681,19 +643,48 @@ def add_mentor_data():
                 designation=row['designation'] or "NA",
                 company_name=row['company_name'] or "NA",
                 work_profile=row['work_profile'] or "NA",
-                preference_no_preference=row['preference_no_preference'] or False,
-                preference_final_year_undergrad=row['preference_final_year_undergrad'] or False,
-                preference_phd_students=row['preference_phd_students'] or False,
+                mentee_preference=row.get('mentee_preference', 'no_preference'),
                 pref=row['pref'] or "NA",
                 field_other="NA",
                 mentees=row['mentees'] or "NA",
                 buddy="no"
             )
-                
                 registration.save()
-            
-                
+              
             except ValidationError as e:
                 leftUsers.append(row['fullname'])
                 print(e)
                 pass
+
+# function to check if the SARC smtp login credentials are still working
+def test_email_connection():
+    try:
+        # Test SMTP connection
+        smtp = smtplib.SMTP("smtp-auth.iitb.ac.in", 587)
+        smtp.starttls()
+        
+        # Test login
+        smtp.login("sarc@iitb.ac.in", "87638c40a92a794bc81b6de03e5ae86c")
+        print("SMTP Connection and Login Successful!")
+        
+        # Test email sending
+        test_email = "arush.sarc@gmail.com"
+        test_msg = MIMEMultipart()
+        test_msg["Subject"] = "Test Email - ASMP"
+        test_msg["From"] = "sarc@iitb.ac.in"
+        test_msg["To"] = test_email
+        test_msg.attach(MIMEText("This is a test email from ASMP.", "plain"))
+        
+        smtp.sendmail("sarc@iitb.ac.in", test_email, test_msg.as_string())
+        print(f"Test email sent successfully to {test_email}")
+        
+        smtp.quit()
+        return True
+        
+    except Exception as e:
+        print(f"Test failed: {str(e)}")
+        return False
+
+# You can call this function to test the email system.
+# test_email_connection()
+# To run the test, run python manage.py shell in ASMP23 folder. You should see a success message
