@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="{% static 'img/favIcon.png' %}" sizes="16x16" type="image/png">
+  <link rel="icon" href="{% static 'img/asmp_logo.png' %}" sizes="16x16" type="image/png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -16,6 +16,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link type='text/css' rel="stylesheet" href="{% static 'StyleSheet/home.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
 
   <title> ASMP | SARC | IIT Bombay</title>
   <style>
@@ -526,7 +527,7 @@
       }
         
       .social-media a:hover {
-        color: #D5877D;
+        color:rgb(63, 109, 224);
       }
 
       .navbar_phone {
@@ -606,6 +607,7 @@
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
+        margin-bottom: 20px;
       }
 
     .employee-card {
@@ -844,6 +846,76 @@
       text-align: center;
       margin-bottom: 5%;
     }
+
+    .social-container {
+      width: 100%;
+      text-align: center;
+      padding: 2rem 0;
+    }
+  
+    .social-icons {
+      padding: 0;
+      list-style: none;
+      margin: 0;
+    }
+  
+    .social-icons li {
+      display: inline-block;
+      margin: 0.5em;
+      position: relative;
+      font-size: 1.2em;
+    }
+  
+    .social-icons i {
+      color: #fff;
+      position: absolute;
+      top: 21px;
+      left: 21px;
+      transition: all 265ms ease-out;
+    }
+  
+    .social-icons a {
+      display: inline-block;
+      position: relative;
+    }
+  
+    .social-icons a:before {
+      content: " ";
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      display: block;
+      background: linear-gradient(45deg, #00B5F5, #002A8F);
+      transition: all 265ms ease-out;
+    }
+  
+    .social-icons a:hover:before {
+      transform: scale(0);
+      transition: all 265ms ease-in;
+    }
+  
+    .social-icons a:hover i {
+      transform: scale(2.2);
+      color: #00B5F5;
+      background: -webkit-linear-gradient(45deg, #00B5F5, #002A8F);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 265ms ease-in;
+    }
+  
+    footer {
+      background-color: #202020;
+      padding-left: 0px;
+      color: #d7e2e1;
+    }
+  
+    .footer-bottom {
+      background-color: rgba(0, 0, 0, 0);
+      color: #d7e2e1;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.95rem;
+    }
   </style>
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -914,9 +986,9 @@
     
     <div class="nav__links">
       <a href="#about" class="nav__link">About</a>
-      <a href="#faq" class="nav__link">FAQs</a>
-      <a href="#initiatives" class="nav__link">Initiatives</a>
       <a href="#testimonials" class="nav__link">Testimonials</a>
+      <a href="#faqs" class="nav__link">FAQs</a>
+      <a href="#initiatives" class="nav__link">Initiatives</a>
       <a href="#contact" class="nav__link">Contact</a>
 
       {% if json_registration and json_registration.fields.token %}
@@ -939,9 +1011,9 @@
     </div>
     <div class="navbar-menu_phone" id="menu">
       <a style="text-decoration: none; color: black;" href="#about"><div class="navbar-item_phone">About</div></a>
-      <a style="text-decoration: none; color: black;" href="#faq"><div class="navbar-item_phone">FAQs</div></a>
-      {% comment %} <div class="navbar-item_phone"><a href="#testimonials" class="nav__link_phone">Testimonials</a></div> {% endcomment %}
       <a style="text-decoration: none; color: black;" href="#testimonials"><div class="navbar-item_phone">Testimonials</div></a>
+      <a style="text-decoration: none; color: black;" href="#faqs"><div class="navbar-item_phone">FAQs</div></a>
+      {% comment %} <div class="navbar-item_phone"><a href="#testimonials" class="nav__link_phone">Testimonials</a></div> {% endcomment %}
       <a style="text-decoration: none; color: black;" href="#contact"><div class="navbar-item_phone">Contact</div></a>
     </div>
   </nav>
@@ -1381,7 +1453,7 @@
     </section>
   </div>
 
-  <footer style="background-color:#202020; padding-left: 0px;">
+  {% comment %} <footer style="background-color:#202020; padding-left: 0px;">
     <div class="footer_container">
       <!-- Section: Social media -->
       <section style="text-align: center;" class="p-4">
@@ -1395,6 +1467,21 @@
     <div class="p-3" style="background-color: rgba(0, 0, 0, 0); color:#d7e2e1; text-align:center;">
       © 2024 Made with 💙 by
       <span style="color:#d7e2e1;">SARC</span>
+    </div>
+  </footer> {% endcomment %}
+
+  <footer>
+    <div class="social-container">
+      <ul class="social-icons">
+        <li><a href="https://www.instagram.com/sarc_iitb/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="https://www.youtube.com/user/SARCIIT" target="_blank"><i class="fa fa-youtube"></i></a></li>
+        <li><a href="https://www.facebook.com/SARC.IITB" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="https://www.linkedin.com/company/student-alumni-relations-cell/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+  
+    <div class="footer-bottom">
+      © 2025 Made with 💙 by <span style="color:#d7e2e1;">SARC</span>
     </div>
   </footer>
 
